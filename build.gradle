@@ -45,7 +45,7 @@ ext {
     retrofit_version = "2.9.0"
     okhttp_version = "4.9.0"
     lifecycle_version = "2.2.0"
-    paging_version = "3.0.0-beta01"
+    dagger_version = "2.29.1"
     junit_version = "4.13.2"
     androidXTestExtKotlinRunnerVersion = "1.1.2"
     espresso_version = "3.3.0"
