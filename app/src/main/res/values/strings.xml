@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">FinanceApp</string>
+
+    <string name="text_registration">Регистрация</string>
+    <string name="text_authorisation">Авторизация</string>
+    <string name="text_sign_in">Войти</string>
+    <string name="text_email">Email</string>
+    <string name="text_password">Пароль</string>
+
+    <string name="text_title_create_new_account">Создать новый аккаунт</string>
+    <string name="text_title_sign_in">Мы рады Вашему возвращению!</string>
+
+    <string name="text_btn_register">Зарегистрироваться</string>
+    <string name="text_btn_sign_in">Войти</string>
 </resources>
