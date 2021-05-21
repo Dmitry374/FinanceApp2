@@ -7,6 +7,7 @@ class AuthorisationActivity : AppCompatActivity(), FragmentAuthorisationCommunic
 
     private val authorisationFragment = AuthorisationFragment()
     private val loginFragment = LoginFragment()
+    private val registrationFragment = RegistrationFragment()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,6 +26,9 @@ class AuthorisationActivity : AppCompatActivity(), FragmentAuthorisationCommunic
     }
 
     override fun onOpenRegistrationScreen() {
-        TODO("Not yet implemented")
+        supportFragmentManager.beginTransaction()
+            .add(R.id.nav_host_authorisation_container, registrationFragment)
+            .addToBackStack(null)
+            .commit()
     }
 }

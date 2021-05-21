@@ -19,14 +19,21 @@ class AuthorisationFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val activity = activity
+
         Glide.with(imgLogoAuthorisation)
             .load(R.drawable.logo)
             .into(imgLogoAuthorisation)
 
         btnSignInAccount.setOnClickListener {
-            val activity = activity
             if (activity is FragmentAuthorisationCommunication) {
                 activity.onOpenLoginScreen()
+            }
+        }
+
+        btnRegisterAccount.setOnClickListener {
+            if (activity is FragmentAuthorisationCommunication) {
+                activity.onOpenRegistrationScreen()
             }
         }
     }
