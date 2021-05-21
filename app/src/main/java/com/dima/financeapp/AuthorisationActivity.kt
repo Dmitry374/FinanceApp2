@@ -3,9 +3,10 @@ package com.dima.financeapp
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 
-class AuthorisationActivity : AppCompatActivity() {
+class AuthorisationActivity : AppCompatActivity(), FragmentAuthorisationCommunication {
 
-    private var authorisationFragment = AuthorisationFragment()
+    private val authorisationFragment = AuthorisationFragment()
+    private val loginFragment = LoginFragment()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -14,5 +15,16 @@ class AuthorisationActivity : AppCompatActivity() {
         supportFragmentManager.beginTransaction()
             .replace(R.id.nav_host_authorisation_container, authorisationFragment)
             .commit()
+    }
+
+    override fun onOpenLoginScreen() {
+        supportFragmentManager.beginTransaction()
+            .add(R.id.nav_host_authorisation_container, loginFragment)
+            .addToBackStack(null)
+            .commit()
+    }
+
+    override fun onOpenRegistrationScreen() {
+        TODO("Not yet implemented")
     }
 }

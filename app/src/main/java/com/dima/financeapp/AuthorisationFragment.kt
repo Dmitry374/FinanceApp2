@@ -22,5 +22,12 @@ class AuthorisationFragment : Fragment() {
         Glide.with(imgLogoAuthorisation)
             .load(R.drawable.logo)
             .into(imgLogoAuthorisation)
+
+        btnSignInAccount.setOnClickListener {
+            val activity = activity
+            if (activity is FragmentAuthorisationCommunication) {
+                activity.onOpenLoginScreen()
+            }
+        }
     }
 }
