@@ -2,13 +2,96 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:id="@+id/loginLayout"
+    android:background="@drawable/background">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/app_name"
+    <ImageView
+        android:id="@+id/imgLogoSignIn"
+        android:layout_width="@dimen/logo_authorisation_width"
+        android:layout_height="@dimen/logo_authorisation_height"
+        android:layout_marginTop="@dimen/logo_authorisation_margin_top"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@mipmap/ic_launcher" />
+
+    <ScrollView
+        android:id="@+id/scrollViewSignIn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/imgLogoSignIn"
+        android:layout_below="@id/imgLogoSignIn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="@dimen/logo_authorisation_area_margin"
+            android:layout_marginStart="@dimen/logo_authorisation_area_margin"
+            android:layout_marginTop="@dimen/logo_authorisation_area_margin"
+            android:background="@drawable/trans_white_rectangle"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:paddingEnd="10dp"
+                android:paddingStart="10dp"
+                android:paddingTop="10dp"
+                android:text="@string/text_title_sign_in"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <AutoCompleteTextView
+                android:id="@+id/edEmailSignIn"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginEnd="15dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/rounded_white"
+                android:drawableStart="@drawable/ic_login_img"
+                android:drawablePadding="5dp"
+                android:hint="@string/text_email"
+                android:paddingStart="10dp"
+                android:textSize="14sp" />
+
+            <AutoCompleteTextView
+                android:id="@+id/edPasswordSignIn"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginEnd="15dp"
+                android:layout_marginStart="15dp"
+                android:background="@drawable/rounded_white"
+                android:drawableStart="@drawable/ic_password_img"
+                android:drawablePadding="5dp"
+                android:hint="@string/text_password"
+                android:inputType="textPassword"
+                android:paddingStart="10dp"
+                android:textSize="14sp" />
+
+            <Button
+                android:id="@+id/btnSignInOnFragmentSign"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:layout_marginBottom="16dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/register_button"
+                android:paddingEnd="20dp"
+                android:paddingStart="20dp"
+                android:text="@string/text_btn_sign_in"
+                android:textColor="@color/white"
+                android:textStyle="normal" />
+        </LinearLayout>
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
