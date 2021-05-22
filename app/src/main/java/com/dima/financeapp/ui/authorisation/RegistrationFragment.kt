@@ -12,7 +12,9 @@ import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.dima.financeapp.App
 import com.dima.financeapp.R
+import com.dima.financeapp.ui.authorisation.communication.FragmentAuthorisationCommunication
 import com.dima.financeapp.ui.authorisation.viewmodel.AuthorisationViewModel
+import com.dima.financeapp.utils.EventObserver
 import kotlinx.android.synthetic.main.fragment_registration.*
 import javax.inject.Inject
 
@@ -40,9 +42,27 @@ class RegistrationFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val activity = activity
+
         Glide.with(imgLogoRegistration)
             .load(R.drawable.logo)
             .into(imgLogoRegistration)
+
+        authorisationViewModel.registerSuccess.observe(
+            viewLifecycleOwner,
+            EventObserver { isRegisterSuccess ->
+                if (isRegisterSuccess) {
+                    edEmailRegister.text.clear()
+                    edPasswordRegister.text.clear()
+
+                    if (activity is FragmentAuthorisationCommunication) {
+                        activity.goToMainScreen()
+                    }
+                } else {
+                    Toast.makeText(activity, R.string.registration_user_already_exists, Toast.LENGTH_SHORT).show()
+                }
+            }
+        )
 
         btnRegister.setOnClickListener {
             val email = edEmailRegister.text.toString()

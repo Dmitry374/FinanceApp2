@@ -12,7 +12,9 @@ import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.dima.financeapp.App
 import com.dima.financeapp.R
+import com.dima.financeapp.ui.authorisation.communication.FragmentAuthorisationCommunication
 import com.dima.financeapp.ui.authorisation.viewmodel.AuthorisationViewModel
+import com.dima.financeapp.utils.EventObserver
 import kotlinx.android.synthetic.main.fragment_login.*
 import javax.inject.Inject
 
@@ -40,9 +42,26 @@ class LoginFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val activity = activity
+
         Glide.with(imgLogoSignIn)
             .load(R.drawable.logo)
             .into(imgLogoSignIn)
+
+        authorisationViewModel.loginSuccess.observe(
+            viewLifecycleOwner,
+            EventObserver { isLoginSuccess ->
+                if (isLoginSuccess) {
+                    edEmailSignIn.text.clear()
+                    edPasswordSignIn.text.clear()
+
+                    if (activity is FragmentAuthorisationCommunication) {
+                        activity.goToMainScreen()
+                    }
+                } else {
+                    Toast.makeText(activity, R.string.input_incorrect_login_data, Toast.LENGTH_SHORT).show()
+                }
+            })
 
         btnSignIn.setOnClickListener {
             val email = edEmailSignIn.text.toString()

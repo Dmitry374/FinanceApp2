@@ -14,4 +14,6 @@
     <string name="text_btn_sign_in">Войти</string>
 
     <string name="fill_in_all_fields">Заполните все поля</string>
+    <string name="input_incorrect_login_data">Данные введены неверно</string>
+    <string name="registration_user_already_exists">Такой пользователь уже существует</string>
 </resources>
