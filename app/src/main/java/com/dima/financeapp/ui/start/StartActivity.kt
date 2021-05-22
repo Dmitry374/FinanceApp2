@@ -1,10 +1,12 @@
-package com.dima.financeapp
+package com.dima.financeapp.ui.start
 
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import androidx.appcompat.app.AppCompatActivity
+import com.dima.financeapp.ui.authorisation.AuthorisationActivity
+import com.dima.financeapp.R
 
 class StartActivity : AppCompatActivity() {
 

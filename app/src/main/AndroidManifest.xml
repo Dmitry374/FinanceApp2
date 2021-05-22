@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FinanceApp">
         <activity
-            android:name=".StartActivity"
+            android:name=".ui.start.StartActivity"
             android:theme="@style/MainActivityTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -19,7 +19,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".AuthorisationActivity"
+            android:name=".ui.authorisation.AuthorisationActivity"
             android:theme="@style/MainActivityTheme" />
     </application>
 

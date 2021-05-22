@@ -1,4 +1,4 @@
-package com.dima.financeapp
+package com.dima.financeapp.ui.authorisation.communication
 
 interface FragmentAuthorisationCommunication {
     fun onOpenLoginScreen()
