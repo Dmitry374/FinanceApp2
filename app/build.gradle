@@ -13,6 +13,7 @@ android {
         applicationId "com.dima.financeapp"
         minSdkVersion rootProject.minSdkVersion
         targetSdkVersion rootProject.targetSdkVersion
+        multiDexEnabled true
         versionCode 1
         versionName "1.0"
 
@@ -46,6 +47,12 @@ dependencies {
 
     // Material
     implementation "com.google.android.material:material:$material_version"
+
+    // Activity
+    implementation "androidx.activity:activity-ktx:$activity_version"
+
+    // Fragment
+    implementation "androidx.fragment:fragment-ktx:$fragment_version"
 
     // Constraint Layout
     implementation "androidx.constraintlayout:constraintlayout:$constraint_layout_version"

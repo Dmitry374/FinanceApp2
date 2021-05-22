@@ -2,6 +2,7 @@ package com.dima.financeapp.di
 
 import com.dima.financeapp.BuildConfig
 import com.dima.financeapp.common.Constants
+import com.dima.financeapp.domain.AuthorisationInteractor
 import com.dima.financeapp.network.ApiService
 import dagger.Module
 import dagger.Provides
@@ -42,5 +43,11 @@ class AppModule {
         return OkHttpClient.Builder()
             .addInterceptor(httpLoggingInterceptor)
             .build()
+    }
+
+    @Singleton
+    @Provides
+    fun provideAuthorisationInteractor(): AuthorisationInteractor {
+        return AuthorisationInteractor()
     }
 }
