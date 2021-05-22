@@ -28,6 +28,22 @@ class AuthorisationViewModel @Inject constructor(
         )
     }
 
+    fun registrationUser(email: String, password: String) {
+        compositeDisposable.add(
+            authorisationInteractor.registerUser(
+                AuthorisationRequestItem(
+                    email = email,
+                    password = password
+                )
+            )
+                .subscribe({
+
+                }, {
+
+                })
+        )
+    }
+
     override fun onCleared() {
         super.onCleared()
         compositeDisposable.clear()

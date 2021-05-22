@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
@@ -42,5 +43,15 @@ class RegistrationFragment : Fragment() {
         Glide.with(imgLogoRegistration)
             .load(R.drawable.logo)
             .into(imgLogoRegistration)
+
+        btnRegister.setOnClickListener {
+            val email = edEmailRegister.text.toString()
+            val password = edPasswordRegister.text.toString()
+            if (email.isEmpty() || password.isEmpty()) {
+                Toast.makeText(activity, R.string.fill_in_all_fields, Toast.LENGTH_SHORT).show()
+            } else {
+                authorisationViewModel.registrationUser(email, password)
+            }
+        }
     }
 }

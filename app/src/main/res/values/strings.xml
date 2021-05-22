@@ -12,4 +12,6 @@
 
     <string name="text_btn_register">Зарегистрироваться</string>
     <string name="text_btn_sign_in">Войти</string>
+
+    <string name="fill_in_all_fields">Заполните все поля</string>
 </resources>
