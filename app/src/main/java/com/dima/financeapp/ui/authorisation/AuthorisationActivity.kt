@@ -1,9 +1,11 @@
 package com.dima.financeapp.ui.authorisation
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.dima.financeapp.R
 import com.dima.financeapp.ui.authorisation.communication.FragmentAuthorisationCommunication
+import com.dima.financeapp.ui.main.MainActivity
 
 class AuthorisationActivity : AppCompatActivity(), FragmentAuthorisationCommunication {
 
@@ -35,6 +37,9 @@ class AuthorisationActivity : AppCompatActivity(), FragmentAuthorisationCommunic
     }
 
     override fun goToMainScreen() {
-
+        val intent = Intent(this, MainActivity::class.java)
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+        startActivity(intent)
+        finish()
     }
 }
