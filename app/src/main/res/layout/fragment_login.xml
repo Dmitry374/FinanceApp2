@@ -3,7 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/loginLayout"
     android:background="@drawable/background">
 
     <ImageView
@@ -21,13 +20,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@+id/imgLogoSignIn"
-        android:layout_below="@id/imgLogoSignIn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="0dp"
             android:layout_marginEnd="@dimen/logo_authorisation_area_margin"
             android:layout_marginStart="@dimen/logo_authorisation_area_margin"
             android:layout_marginTop="@dimen/logo_authorisation_area_margin"
