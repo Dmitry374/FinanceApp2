@@ -1,11 +1,14 @@
 package com.dima.financeapp.di
 
 import android.content.Context
+import androidx.room.Room
 import com.dima.financeapp.BuildConfig
 import com.dima.financeapp.R
 import com.dima.financeapp.common.Constants
 import com.dima.financeapp.common.DataMapper
-import com.dima.financeapp.domain.AuthorisationInteractor
+import com.dima.financeapp.database.FinanceDao
+import com.dima.financeapp.database.FinanceDatabase
+import com.dima.financeapp.domain.FinanceInteractor
 import com.dima.financeapp.network.ApiService
 import com.dima.financeapp.repository.AuthorisationRepository
 import com.dima.financeapp.sharedpreference.SharedPreferenceHelper
@@ -58,14 +61,36 @@ class AppModule(private val context: Context) {
 
     @Singleton
     @Provides
+    fun provideDb(context: Context): FinanceDatabase {
+        return Room.databaseBuilder(
+            context.applicationContext,
+            FinanceDatabase::class.java,
+            Constants.DATABASE_NAME
+        )
+            .fallbackToDestructiveMigration()
+            .build()
+    }
+
+    @Singleton
+    @Provides
+    fun provideFinanceDao(db: FinanceDatabase): FinanceDao {
+        return db.financeDao()
+    }
+
+    @Singleton
+    @Provides
     fun provideDataMapper(): DataMapper {
         return DataMapper()
     }
 
     @Singleton
     @Provides
-    fun provideAuthorisationRepository(apiService: ApiService, dataMapper: DataMapper): AuthorisationRepository {
-        return AuthorisationRepository(apiService, dataMapper)
+    fun provideAuthorisationRepository(
+        apiService: ApiService,
+        financeDao: FinanceDao,
+        dataMapper: DataMapper
+    ): AuthorisationRepository {
+        return AuthorisationRepository(apiService, financeDao, dataMapper)
     }
 
     @Singleton
@@ -84,7 +109,7 @@ class AppModule(private val context: Context) {
     fun provideAuthorisationInteractor(
         authorisationRepository: AuthorisationRepository,
         sharedPreferenceHelper: SharedPreferenceHelper
-    ): AuthorisationInteractor {
-        return AuthorisationInteractor(authorisationRepository, sharedPreferenceHelper)
+    ): FinanceInteractor {
+        return FinanceInteractor(authorisationRepository, sharedPreferenceHelper)
     }
 }

@@ -3,14 +3,14 @@ package com.dima.financeapp.ui.authorisation.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.dima.financeapp.domain.AuthorisationInteractor
+import com.dima.financeapp.domain.FinanceInteractor
 import com.dima.financeapp.network.request.AuthorisationRequestItem
 import com.dima.financeapp.utils.Event
 import io.reactivex.disposables.CompositeDisposable
 import javax.inject.Inject
 
 class AuthorisationViewModel @Inject constructor(
-    private val authorisationInteractor: AuthorisationInteractor
+    private val financeInteractor: FinanceInteractor
 ) : ViewModel() {
 
     private val compositeDisposable = CompositeDisposable()
@@ -25,7 +25,7 @@ class AuthorisationViewModel @Inject constructor(
 
     fun loginUser(email: String, password: String) {
         compositeDisposable.add(
-            authorisationInteractor.loginUser(
+            financeInteractor.loginUser(
                 AuthorisationRequestItem(
                     email = email,
                     password = password
@@ -41,7 +41,7 @@ class AuthorisationViewModel @Inject constructor(
 
     fun registrationUser(email: String, password: String) {
         compositeDisposable.add(
-            authorisationInteractor.registerUser(
+            financeInteractor.registerUser(
                 AuthorisationRequestItem(
                     email = email,
                     password = password

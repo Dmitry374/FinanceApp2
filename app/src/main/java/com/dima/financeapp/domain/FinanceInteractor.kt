@@ -8,19 +8,19 @@ import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
-class AuthorisationInteractor(
-    private val newsRepository: AuthorisationRepository,
+class FinanceInteractor(
+    private val authorisationRepository: AuthorisationRepository,
     private val sharedPreferencesHelper: SharedPreferenceHelper
 ) {
 
     fun loginUser(authorisationRequestItem: AuthorisationRequestItem): Single<UserResponse> {
-        return newsRepository.loginUser(authorisationRequestItem)
+        return authorisationRepository.loginUser(authorisationRequestItem)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
     }
 
     fun registerUser(authorisationRequestItem: AuthorisationRequestItem): Single<UserResponse> {
-        return newsRepository.registerUser(authorisationRequestItem)
+        return authorisationRepository.registerUser(authorisationRequestItem)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
     }
