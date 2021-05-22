@@ -46,6 +46,8 @@ ext {
     rxandroid_version = "2.1.1"
     retrofit_version = "2.9.0"
     okhttp_version = "4.9.0"
+    room_version = "2.3.0"
+    room_compiler_version = "2.2.5"
     lifecycle_version = "2.2.0"
     dagger_version = "2.29.1"
     junit_version = "4.13.2"
