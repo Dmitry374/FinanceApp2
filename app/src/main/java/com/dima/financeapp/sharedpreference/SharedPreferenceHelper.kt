@@ -2,12 +2,13 @@ package com.dima.financeapp.sharedpreference
 
 import android.content.Context
 import android.content.SharedPreferences
+import com.dima.financeapp.R
 import com.dima.financeapp.common.Constants
 
 class SharedPreferenceHelper(private val sharedPreferences: SharedPreferences) {
 
     fun clearAllPrefs(context: Context){
-        context.getSharedPreferences(Constants.SHARED_PREFERENCE_NAME, Context.MODE_PRIVATE).edit().clear().apply()
+        context.getSharedPreferences(context.resources.getString(R.string.app_name), Context.MODE_PRIVATE).edit().clear().apply()
     }
 
     fun clearIsSignValue() = sharedPreferences.edit().putBoolean(Constants.IS_SIGN, false).apply()

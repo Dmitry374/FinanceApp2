@@ -42,5 +42,9 @@ class LoginFragment : Fragment() {
         Glide.with(imgLogoSignIn)
             .load(R.drawable.logo)
             .into(imgLogoSignIn)
+
+        btnSignIn.setOnClickListener {
+            authorisationViewModel.loginUser(edEmailSignIn.text.toString(), edPasswordSignIn.text.toString())
+        }
     }
 }
