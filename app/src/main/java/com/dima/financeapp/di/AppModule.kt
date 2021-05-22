@@ -10,7 +10,7 @@ import com.dima.financeapp.database.FinanceDao
 import com.dima.financeapp.database.FinanceDatabase
 import com.dima.financeapp.domain.FinanceInteractor
 import com.dima.financeapp.network.ApiService
-import com.dima.financeapp.repository.AuthorisationRepository
+import com.dima.financeapp.repository.FinanceRepository
 import com.dima.financeapp.sharedpreference.SharedPreferenceHelper
 import dagger.Module
 import dagger.Provides
@@ -89,8 +89,8 @@ class AppModule(private val context: Context) {
         apiService: ApiService,
         financeDao: FinanceDao,
         dataMapper: DataMapper
-    ): AuthorisationRepository {
-        return AuthorisationRepository(apiService, financeDao, dataMapper)
+    ): FinanceRepository {
+        return FinanceRepository(apiService, financeDao, dataMapper)
     }
 
     @Singleton
@@ -107,9 +107,9 @@ class AppModule(private val context: Context) {
     @Singleton
     @Provides
     fun provideAuthorisationInteractor(
-        authorisationRepository: AuthorisationRepository,
+        financeRepository: FinanceRepository,
         sharedPreferenceHelper: SharedPreferenceHelper
     ): FinanceInteractor {
-        return FinanceInteractor(authorisationRepository, sharedPreferenceHelper)
+        return FinanceInteractor(financeRepository, sharedPreferenceHelper)
     }
 }

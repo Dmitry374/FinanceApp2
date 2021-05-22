@@ -14,4 +14,7 @@ class SharedPreferenceHelper(private val sharedPreferences: SharedPreferences) {
     fun clearIsSignValue() = sharedPreferences.edit().putBoolean(Constants.IS_SIGN, false).apply()
     fun setSignInAccount(isSign: Boolean) = sharedPreferences.edit().putBoolean(Constants.IS_SIGN, isSign).apply()
     fun getSignInAccount(): Boolean = sharedPreferences.getBoolean(Constants.IS_SIGN, false)
+
+    fun setUserEmail(email: String) = sharedPreferences.edit().putString(Constants.USER_EMAIL, email).apply()
+    fun getUserEmail(): String = sharedPreferences.getString(Constants.USER_EMAIL, "") ?: ""
 }

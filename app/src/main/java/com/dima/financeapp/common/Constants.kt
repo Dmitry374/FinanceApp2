@@ -10,4 +10,5 @@ object Constants {
      * SharedPreferences constants
      */
     const val IS_SIGN = "is_sign"
+    const val USER_EMAIL = "user_email"
 }
