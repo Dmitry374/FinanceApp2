@@ -20,6 +20,14 @@ class FinanceInteractor(
                 sharedPreferencesHelper.setUserEmail(userResponse.email)
 
                 financeRepository.insertUser(userResponse)
+
+                financeRepository.insertBills(userResponse.bills)
+
+                userResponse.bills.forEach { bill ->
+                    bill.records.forEach { record ->
+                        financeRepository.insertRecord(bill, record)
+                    }
+                }
             }
             .observeOn(AndroidSchedulers.mainThread())
     }

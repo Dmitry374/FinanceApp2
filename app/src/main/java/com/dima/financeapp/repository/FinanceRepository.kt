@@ -3,6 +3,8 @@ package com.dima.financeapp.repository
 import com.dima.financeapp.common.DataMapper
 import com.dima.financeapp.database.FinanceDao
 import com.dima.financeapp.model.domain.User
+import com.dima.financeapp.model.net.BillResponse
+import com.dima.financeapp.model.net.RecordResponse
 import com.dima.financeapp.model.net.UserResponse
 import com.dima.financeapp.network.ApiService
 import com.dima.financeapp.network.request.AuthorisationRequestItem
@@ -47,5 +49,13 @@ class FinanceRepository(
 
     fun clearUser() {
         financeDao.clearUserData()
+    }
+
+    fun insertBills(bills: List<BillResponse>) {
+        financeDao.insertBills(dataMapper.listBillResponseToListBillEntity(bills))
+    }
+
+    fun insertRecord(billResponse: BillResponse, recordResponse: RecordResponse) {
+        financeDao.insertRecord(dataMapper.recordResponseToRecordEntity(recordResponse, billResponse.id))
     }
 }

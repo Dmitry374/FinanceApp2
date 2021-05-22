@@ -3,9 +3,10 @@ package com.dima.financeapp.model.entity
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.ForeignKey
+import androidx.room.PrimaryKey
 
 @Entity(
-    tableName = "bill",
+    tableName = "record",
     foreignKeys = [ForeignKey(
         entity = BillEntity::class,
         parentColumns = ["id"],
@@ -13,7 +14,8 @@ import androidx.room.ForeignKey
         onDelete = ForeignKey.CASCADE
     )]
 )
-class RecordEntity(
+data class RecordEntity(
+    @PrimaryKey
     val id: Int,
     val name: String,
     val sum: Int,

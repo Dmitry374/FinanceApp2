@@ -1,7 +1,7 @@
 package com.dima.financeapp.model.net
 
 data class UserResponse(
-    val id: Long,
+    val id: Int,
     val name: String,
     val surname: String,
     val email: String,
