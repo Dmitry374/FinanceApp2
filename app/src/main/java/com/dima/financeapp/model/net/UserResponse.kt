@@ -7,5 +7,6 @@ data class UserResponse(
     val email: String,
     val password: String,
     val datebirth: String,
-    val gender: String
+    val gender: String,
+    val bills: List<BillResponse>
 )

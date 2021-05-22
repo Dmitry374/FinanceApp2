@@ -1,0 +1,26 @@
+package com.dima.financeapp.model.entity
+
+import androidx.room.ColumnInfo
+import androidx.room.Entity
+import androidx.room.ForeignKey
+
+@Entity(
+    tableName = "bill",
+    foreignKeys = [ForeignKey(
+        entity = BillEntity::class,
+        parentColumns = ["id"],
+        childColumns = ["bill_id"],
+        onDelete = ForeignKey.CASCADE
+    )]
+)
+class RecordEntity(
+    val id: Int,
+    val name: String,
+    val sum: Int,
+    val type: String,
+    val color: Int,
+    val icon: Int,
+    val date: Long,
+    @ColumnInfo(name = "bill_id", index = true)
+    val billId: Int
+)
