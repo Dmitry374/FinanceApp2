@@ -1,4 +1,4 @@
-package com.dima.financeapp.ui.main
+package com.dima.financeapp.ui.main.activity
 
 import androidx.lifecycle.ViewModel
 import com.dima.financeapp.domain.FinanceInteractor

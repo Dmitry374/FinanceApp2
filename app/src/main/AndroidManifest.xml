@@ -27,7 +27,9 @@
         <activity
             android:name=".ui.authorisation.AuthorisationActivity"
             android:theme="@style/MainActivityTheme" />
-        <activity android:name=".ui.main.MainActivity" />
+        <activity
+            android:name=".ui.main.activity.MainActivity"
+            android:theme="@style/MainActivityTheme" />
     </application>
 
 </manifest>

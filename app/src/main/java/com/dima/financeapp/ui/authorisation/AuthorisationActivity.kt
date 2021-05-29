@@ -5,7 +5,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.dima.financeapp.R
 import com.dima.financeapp.ui.authorisation.communication.FragmentAuthorisationCommunication
-import com.dima.financeapp.ui.main.MainActivity
+import com.dima.financeapp.ui.main.activity.MainActivity
 
 class AuthorisationActivity : AppCompatActivity(), FragmentAuthorisationCommunication {
 
