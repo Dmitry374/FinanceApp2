@@ -4,6 +4,8 @@
     <dimen name="padding">16dp</dimen>
     <dimen name="small_margin">8dp</dimen>
 
+    <dimen name="small_padding">8dp</dimen>
+
     <dimen name="toolbar_elevation">4dp</dimen>
 
     <dimen name="authorisation_top_margin">120dp</dimen>
@@ -11,6 +13,13 @@
     <dimen name="logo_authorisation_height">80dp</dimen>
     <dimen name="logo_authorisation_margin_top">50dp</dimen>
     <dimen name="logo_authorisation_area_margin">30dp</dimen>
+
+    <dimen name="card_bill_width">100dp</dimen>
+    <dimen name="card_bill_height">100dp</dimen>
+    <dimen name="card_bill_radius">8dp</dimen>
+    <dimen name="card_bill_elevation">0dp</dimen>
+
+    <dimen name="card_bill_text_size">14sp</dimen>
 
     <dimen name="bottom_nav_elevation">10dp</dimen>
 </resources>

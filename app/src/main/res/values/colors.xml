@@ -11,4 +11,6 @@
     <color name="colorPrimary">#42ba46</color>
     <color name="colorPrimaryDark">#3d9f30</color>
     <color name="colorAccent">#45d135</color>
+
+    <color name="bill_card_color">#40000000</color>
 </resources>

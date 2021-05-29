@@ -7,15 +7,20 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.dima.financeapp.App
 import com.dima.financeapp.R
+import com.dima.financeapp.model.domain.Bill
+import com.dima.financeapp.ui.main.communication.MainTabCommunication
 import com.dima.financeapp.ui.main.main.MainFragment
 import javax.inject.Inject
 
 class NavFragment : Fragment() {
 
     private val mainFragment = MainFragment()
+
+    private var mainTabCommunication: MainTabCommunication? = null
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
@@ -39,8 +44,26 @@ class NavFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        initTabsCommunicationInterfaces()
+
+        initObservers()
+
+        navViewModel.getBills()
+
         childFragmentManager.beginTransaction()
             .replace(R.id.nav_host_container, mainFragment)
             .commit()
+    }
+
+    private fun initObservers() {
+        navViewModel.bills.observe(viewLifecycleOwner, Observer(::displayBills))
+    }
+
+    private fun displayBills(bills: List<Bill>) {
+        mainTabCommunication?.displayBills(bills)
+    }
+
+    private fun initTabsCommunicationInterfaces() {
+        mainTabCommunication = mainFragment
     }
 }
