@@ -6,6 +6,7 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Update
+import com.dima.financeapp.database.query.BillsWithRecordsRequest
 import com.dima.financeapp.model.entity.BillEntity
 import com.dima.financeapp.model.entity.RecordEntity
 import com.dima.financeapp.model.entity.UserEntity
@@ -33,7 +34,7 @@ interface FinanceDao {
     fun insertBill(bill: BillEntity)
 
     @Query("SELECT * FROM bill")
-    fun getBills(): Single<List<BillEntity>>
+    fun getBills(): Single<List<BillsWithRecordsRequest>>
 
     @Update(onConflict = OnConflictStrategy.REPLACE)
     fun updateBill(billEntity: BillEntity)

@@ -1,5 +1,8 @@
 package com.dima.financeapp.common
 
+import com.dima.financeapp.database.query.BillsWithRecordsRequest
+import com.dima.financeapp.model.domain.Bill
+import com.dima.financeapp.model.domain.Record
 import com.dima.financeapp.model.domain.User
 import com.dima.financeapp.model.entity.BillEntity
 import com.dima.financeapp.model.entity.RecordEntity
@@ -73,5 +76,31 @@ class DataMapper {
         icon = this.icon,
         date = this.date,
         billId = billId
+    )
+
+    fun billsWithRecordsListToBillsList(billsWithRecords: List<BillsWithRecordsRequest>): List<Bill> {
+        return billsWithRecords.toBills()
+    }
+
+    private fun List<BillsWithRecordsRequest>.toBills() = this.map { it.toBill() }
+
+    private fun BillsWithRecordsRequest.toBill() = Bill(
+        id = this.billEntity.id,
+        name = this.billEntity.name,
+        amount = this.billEntity.amount,
+        color = this.billEntity.color,
+        records = this.records.toRecords()
+    )
+
+    private fun List<RecordEntity>.toRecords() = this.map { it.toRecord() }
+
+    private fun RecordEntity.toRecord() = Record(
+        id = this.id,
+        name = this.name,
+        sum = this.sum,
+        type = this.type,
+        color = this.color,
+        icon = this.icon,
+        date = this.date
     )
 }
