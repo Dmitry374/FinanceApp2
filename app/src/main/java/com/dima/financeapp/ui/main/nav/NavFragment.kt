@@ -10,9 +10,12 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import com.dima.financeapp.App
 import com.dima.financeapp.R
+import com.dima.financeapp.ui.main.main.MainFragment
 import javax.inject.Inject
 
 class NavFragment : Fragment() {
+
+    private val mainFragment = MainFragment()
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
@@ -31,5 +34,13 @@ class NavFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
         return inflater.inflate(R.layout.fragment_nav, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        childFragmentManager.beginTransaction()
+            .replace(R.id.nav_host_container, mainFragment)
+            .commit()
     }
 }
