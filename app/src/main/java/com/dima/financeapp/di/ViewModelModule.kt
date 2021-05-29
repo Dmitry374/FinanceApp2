@@ -2,7 +2,7 @@ package com.dima.financeapp.di
 
 import androidx.lifecycle.ViewModel
 import com.dima.financeapp.ui.authorisation.viewmodel.AuthorisationViewModel
-import com.dima.financeapp.ui.main.activity.MainViewModel
+import com.dima.financeapp.ui.main.nav.NavViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
@@ -17,6 +17,6 @@ abstract class ViewModelModule {
 
     @Binds
     @IntoMap
-    @ViewModelKey(MainViewModel::class)
-    abstract fun bindMainViewModel(mainViewModel: MainViewModel): ViewModel
+    @ViewModelKey(NavViewModel::class)
+    abstract fun bindNavViewModel(navViewModel: NavViewModel): ViewModel
 }

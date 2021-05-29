@@ -1,11 +1,11 @@
-package com.dima.financeapp.ui.main.activity
+package com.dima.financeapp.ui.main.nav
 
 import androidx.lifecycle.ViewModel
 import com.dima.financeapp.domain.FinanceInteractor
 import io.reactivex.disposables.CompositeDisposable
 import javax.inject.Inject
 
-class MainViewModel @Inject constructor(
+class NavViewModel @Inject constructor(
     private val financeInteractor: FinanceInteractor
 ) : ViewModel() {
 
