@@ -31,6 +31,8 @@ class MainFragment : Fragment(), MainTabCommunication {
     }
 
     private fun initViews() {
+        val billItemDecoration = BillItemDecoration()
+        recyclerMainBills.addItemDecoration(billItemDecoration)
         recyclerMainBills.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
         recyclerMainBills.adapter = billAdapter
     }

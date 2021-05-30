@@ -23,5 +23,7 @@
 
     <dimen name="card_bill_text_size">14sp</dimen>
 
+    <dimen name="margin_between_bills">8dp</dimen>
+
     <dimen name="bottom_nav_elevation">10dp</dimen>
 </resources>
