@@ -8,7 +8,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.dima.financeapp.App
 import com.dima.financeapp.R
 import com.dima.financeapp.model.domain.Bill
-import com.dima.financeapp.ui.main.RecordsFragment
+import com.dima.financeapp.ui.main.records.RecordsFragment
 import com.dima.financeapp.ui.main.addbill.AddBillFragment
 import com.dima.financeapp.ui.main.communication.MainFragmentCommunicationInterface
 import com.dima.financeapp.ui.main.communication.MainTabCommunication

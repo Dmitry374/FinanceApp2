@@ -11,4 +11,9 @@ object Constants {
      */
     const val IS_SIGN = "is_sign"
     const val USER_EMAIL = "user_email"
+
+    const val RECORD_TYPE_IMAGE_SIZE = 50
+
+    const val RECORD_TYPE_INCOME = "Доход"
+    const val RECORD_TYPE_CONSUMPTION = "Расход"
 }

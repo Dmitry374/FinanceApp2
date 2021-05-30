@@ -13,4 +13,9 @@
     <color name="colorAccent">#45d135</color>
 
     <color name="bill_card_color">#40000000</color>
+
+    <color name="colorLineGrey">#d2d2d2</color>
+
+    <color name="color_income">#12FF00</color>
+    <color name="color_consumption">#FF0000</color>
 </resources>

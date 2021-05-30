@@ -1,4 +1,4 @@
-package com.dima.financeapp.ui.main
+package com.dima.financeapp.ui.main.records
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,8 +8,11 @@ import androidx.appcompat.widget.Toolbar
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.dima.financeapp.R
 import com.dima.financeapp.model.domain.Bill
+import com.dima.financeapp.ui.main.records.adapter.RecordAdapter
+import kotlinx.android.synthetic.main.fragment_records.*
 
 class RecordsFragment : Fragment() {
 
@@ -24,6 +27,10 @@ class RecordsFragment : Fragment() {
                     ARG_BILL to bill
                 )
             }
+    }
+
+    private val recordAdapter = RecordAdapter { record ->
+
     }
 
     override fun onCreateView(
@@ -46,5 +53,14 @@ class RecordsFragment : Fragment() {
         toolbar.setNavigationOnClickListener {
             requireActivity().onBackPressed()
         }
+
+        initViews(bill)
+    }
+
+    private fun initViews(bill: Bill) {
+        recyclerRecords.layoutManager = LinearLayoutManager(activity)
+        recordAdapter.bill = bill
+        recordAdapter.submitList(bill.records)
+        recyclerRecords.adapter = recordAdapter
     }
 }

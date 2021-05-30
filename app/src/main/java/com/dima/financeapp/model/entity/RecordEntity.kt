@@ -18,7 +18,7 @@ data class RecordEntity(
     @PrimaryKey
     val id: Int,
     val name: String,
-    val sum: Int,
+    val sum: Double,
     val type: String,
     val color: Int,
     val icon: Int,

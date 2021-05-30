@@ -7,7 +7,7 @@ import kotlinx.android.parcel.Parcelize
 data class Record(
     val id: Int,
     val name: String,
-    val sum: Int,
+    val sum: Double,
     val type: String,
     val color: Int,
     val icon: Int,
