@@ -7,6 +7,8 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.dima.financeapp.App
 import com.dima.financeapp.R
+import com.dima.financeapp.model.domain.Bill
+import com.dima.financeapp.ui.main.RecordsFragment
 import com.dima.financeapp.ui.main.addbill.AddBillFragment
 import com.dima.financeapp.ui.main.communication.MainFragmentCommunicationInterface
 import com.dima.financeapp.ui.main.communication.MainTabCommunication
@@ -18,6 +20,8 @@ class MainActivity : AppCompatActivity(), MainFragmentCommunicationInterface {
 
     private val mainFragment = MainFragment()
     private val addBillFragment = AddBillFragment()
+
+    private val recordsFragment = RecordsFragment()
 
     private var mainTabCommunication: MainTabCommunication? = null
 
@@ -67,5 +71,12 @@ class MainActivity : AppCompatActivity(), MainFragmentCommunicationInterface {
 
     override fun displayNewBill(bill: BillItemUiModel.BillUiModel) {
         mainViewModel.addNewBill(bill)
+    }
+
+    override fun displayBillRecords(bill: Bill) {
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.nav_host_container, recordsFragment)
+            .addToBackStack(null)
+            .commit()
     }
 }

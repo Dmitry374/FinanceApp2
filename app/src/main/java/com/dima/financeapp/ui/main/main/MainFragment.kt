@@ -20,7 +20,7 @@ class MainFragment : Fragment(), MainTabCommunication {
     private var mainFragmentCommunicationInterface: MainFragmentCommunicationInterface? = null
 
     private val billAdapter = BillAdapter({ bill ->
-
+        mainFragmentCommunicationInterface?.displayBillRecords(bill)
     }, {
         mainFragmentCommunicationInterface?.displayAddNewBillFragment()
     })
