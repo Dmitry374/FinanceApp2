@@ -12,7 +12,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.dima.financeapp.App
 import com.dima.financeapp.R
 import com.dima.financeapp.ui.main.communication.MainTabCommunication
-import com.dima.financeapp.ui.main.main.BillItemUiModel
+import com.dima.financeapp.ui.main.main.billadapter.BillItemUiModel
 import com.dima.financeapp.ui.main.main.MainFragment
 import javax.inject.Inject
 

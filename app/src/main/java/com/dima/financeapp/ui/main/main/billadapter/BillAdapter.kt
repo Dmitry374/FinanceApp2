@@ -1,4 +1,4 @@
-package com.dima.financeapp.ui.main.main
+package com.dima.financeapp.ui.main.main.billadapter
 
 import android.view.LayoutInflater
 import android.view.View

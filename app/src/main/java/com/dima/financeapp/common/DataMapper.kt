@@ -10,7 +10,7 @@ import com.dima.financeapp.model.entity.UserEntity
 import com.dima.financeapp.model.net.BillResponse
 import com.dima.financeapp.model.net.RecordResponse
 import com.dima.financeapp.model.net.UserResponse
-import com.dima.financeapp.ui.main.main.BillItemUiModel
+import com.dima.financeapp.ui.main.main.billadapter.BillItemUiModel
 
 class DataMapper {
 

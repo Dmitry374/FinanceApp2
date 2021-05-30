@@ -4,7 +4,7 @@ import com.dima.financeapp.model.domain.User
 import com.dima.financeapp.network.request.AuthorisationRequestItem
 import com.dima.financeapp.repository.FinanceRepository
 import com.dima.financeapp.sharedpreference.SharedPreferenceHelper
-import com.dima.financeapp.ui.main.main.BillItemUiModel
+import com.dima.financeapp.ui.main.main.billadapter.BillItemUiModel
 import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers

@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.dima.financeapp.domain.FinanceInteractor
-import com.dima.financeapp.ui.main.main.BillItemUiModel
+import com.dima.financeapp.ui.main.main.billadapter.BillItemUiModel
 import io.reactivex.disposables.CompositeDisposable
 import javax.inject.Inject
 

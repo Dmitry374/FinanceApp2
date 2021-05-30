@@ -8,7 +8,7 @@ import com.dima.financeapp.model.net.RecordResponse
 import com.dima.financeapp.model.net.UserResponse
 import com.dima.financeapp.network.ApiService
 import com.dima.financeapp.network.request.AuthorisationRequestItem
-import com.dima.financeapp.ui.main.main.BillItemUiModel
+import com.dima.financeapp.ui.main.main.billadapter.BillItemUiModel
 import io.reactivex.Single
 
 class FinanceRepository(

@@ -8,6 +8,9 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dima.financeapp.R
 import com.dima.financeapp.ui.main.communication.MainTabCommunication
+import com.dima.financeapp.ui.main.main.billadapter.BillAdapter
+import com.dima.financeapp.ui.main.main.billadapter.BillItemDecoration
+import com.dima.financeapp.ui.main.main.billadapter.BillItemUiModel
 import kotlinx.android.synthetic.main.fragment_main.*
 
 class MainFragment : Fragment(), MainTabCommunication {
