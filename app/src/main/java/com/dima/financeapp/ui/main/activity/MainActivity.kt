@@ -12,7 +12,6 @@ import com.dima.financeapp.ui.main.communication.MainFragmentCommunicationInterf
 import com.dima.financeapp.ui.main.communication.MainTabCommunication
 import com.dima.financeapp.ui.main.main.MainFragment
 import com.dima.financeapp.ui.main.main.billadapter.BillItemUiModel
-import com.dima.financeapp.ui.main.nav.NavViewModel
 import javax.inject.Inject
 
 class MainActivity : AppCompatActivity(), MainFragmentCommunicationInterface {
@@ -25,7 +24,7 @@ class MainActivity : AppCompatActivity(), MainFragmentCommunicationInterface {
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
 
-    private val navViewModel: NavViewModel by viewModels {
+    private val mainViewModel: MainViewModel by viewModels {
         viewModelFactory
     }
 
@@ -44,11 +43,11 @@ class MainActivity : AppCompatActivity(), MainFragmentCommunicationInterface {
 
         initObservers()
 
-        navViewModel.getBills()
+        mainViewModel.getBills()
     }
 
     private fun initObservers() {
-        navViewModel.bills.observe(this, Observer(::displayBills))
+        mainViewModel.bills.observe(this, Observer(::displayBills))
     }
 
     private fun displayBills(bills: List<BillItemUiModel.BillUiModel>) {
@@ -67,6 +66,6 @@ class MainActivity : AppCompatActivity(), MainFragmentCommunicationInterface {
     }
 
     override fun displayNewBill(bill: BillItemUiModel.BillUiModel) {
-        navViewModel.addNewBill(bill)
+        mainViewModel.addNewBill(bill)
     }
 }

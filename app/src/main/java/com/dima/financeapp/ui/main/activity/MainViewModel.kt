@@ -1,4 +1,4 @@
-package com.dima.financeapp.ui.main.nav
+package com.dima.financeapp.ui.main.activity
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -8,7 +8,7 @@ import com.dima.financeapp.ui.main.main.billadapter.BillItemUiModel
 import io.reactivex.disposables.CompositeDisposable
 import javax.inject.Inject
 
-class NavViewModel @Inject constructor(
+class MainViewModel @Inject constructor(
     private val financeInteractor: FinanceInteractor
 ) : ViewModel() {
 
