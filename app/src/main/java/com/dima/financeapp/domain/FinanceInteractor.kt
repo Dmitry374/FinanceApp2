@@ -1,6 +1,8 @@
 package com.dima.financeapp.domain
 
 import com.dima.financeapp.model.domain.User
+import com.dima.financeapp.model.net.BillResponse
+import com.dima.financeapp.network.request.AddBillRequestItem
 import com.dima.financeapp.network.request.AuthorisationRequestItem
 import com.dima.financeapp.repository.FinanceRepository
 import com.dima.financeapp.sharedpreference.SharedPreferenceHelper
@@ -47,6 +49,18 @@ class FinanceInteractor(
 
                 financeRepository.insertUser(userResponse)
             }
+            .observeOn(AndroidSchedulers.mainThread())
+    }
+
+    fun addBill(name: String, amount: Double): Single<BillResponse> {
+        return financeRepository.addBill(
+            AddBillRequestItem(
+                name = name,
+                amount = amount,
+                email = sharedPreferencesHelper.getUserEmail()
+            )
+        )
+            .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
     }
 
