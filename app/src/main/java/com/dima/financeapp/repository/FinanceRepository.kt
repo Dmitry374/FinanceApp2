@@ -82,7 +82,8 @@ class FinanceRepository(
      * Convert
      */
 
-    fun getBillFromBillResponse(billResponse: BillResponse): Bill {
-        return dataMapper.billResponseToBill(billResponse)
+    fun getBillFromBillResponse(billResponse: BillResponse): BillItemUiModel.BillUiModel {
+        val bill = dataMapper.billResponseToBill(billResponse)
+        return dataMapper.billToBillUiModel(bill)
     }
 }

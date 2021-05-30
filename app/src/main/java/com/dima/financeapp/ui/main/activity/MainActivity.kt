@@ -6,6 +6,7 @@ import androidx.fragment.app.FragmentManager
 import com.dima.financeapp.R
 import com.dima.financeapp.ui.main.communication.MainFragmentCommunicationInterface
 import com.dima.financeapp.ui.main.communication.NavFragmentCallback
+import com.dima.financeapp.ui.main.main.billadapter.BillItemUiModel
 import com.dima.financeapp.ui.main.nav.NavFragment
 
 class MainActivity : AppCompatActivity(), MainFragmentCommunicationInterface {
@@ -33,6 +34,10 @@ class MainActivity : AppCompatActivity(), MainFragmentCommunicationInterface {
 
     override fun displayAddNewBillFragment() {
         navFragmentCallback?.displayAddNewBillFragment()
+    }
+
+    override fun displayNewBill(bill: BillItemUiModel.BillUiModel) {
+        navFragmentCallback?.displayNewBill(bill)
     }
 
     override fun onBackPressed() {

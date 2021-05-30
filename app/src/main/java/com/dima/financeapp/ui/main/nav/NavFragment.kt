@@ -75,4 +75,8 @@ class NavFragment : Fragment(), NavFragmentCallback {
             .addToBackStack(null)
             .commit()
     }
+
+    override fun displayNewBill(bill: BillItemUiModel.BillUiModel) {
+        navViewModel.addNewBill(bill)
+    }
 }

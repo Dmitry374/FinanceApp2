@@ -13,7 +13,10 @@ import androidx.lifecycle.ViewModelProvider
 import com.dima.financeapp.App
 import com.dima.financeapp.R
 import com.dima.financeapp.common.hideKeyboard
+import com.dima.financeapp.ui.main.communication.MainFragmentCommunicationInterface
 import com.dima.financeapp.ui.main.main.MainTabViewModel
+import com.dima.financeapp.ui.main.main.billadapter.BillItemUiModel
+import com.dima.financeapp.utils.EventObserver
 import kotlinx.android.synthetic.main.fragment_add_bill.*
 import javax.inject.Inject
 
@@ -26,8 +29,14 @@ class AddBillFragment : Fragment() {
         viewModelFactory
     }
 
+    private var mainFragmentCommunicationInterface: MainFragmentCommunicationInterface? = null
+
     override fun onAttach(context: Context) {
         super.onAttach(context)
+
+        if (context is MainFragmentCommunicationInterface) {
+            mainFragmentCommunicationInterface = context
+        }
 
         (requireActivity().application as App).appComponent.inject(this)
     }
@@ -40,6 +49,8 @@ class AddBillFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        initObservers()
 
         val addBillToolbar = view.findViewById<Toolbar>(R.id.toolbar)
         addBillToolbar.title = resources.getString(R.string.add_bill_title)
@@ -69,6 +80,17 @@ class AddBillFragment : Fragment() {
                 }
             }
         })
+    }
+
+    private fun initObservers() {
+        mainTabViewModel.bill.observe(viewLifecycleOwner, EventObserver(::displayBill))
+    }
+
+    private fun displayBill(bill: BillItemUiModel.BillUiModel) {
+        hideSoftKeyBoardAndClearText()
+        requireActivity().onBackPressed()
+
+        mainFragmentCommunicationInterface?.displayNewBill(bill)
     }
 
     private fun hideSoftKeyBoardAndClearText() {

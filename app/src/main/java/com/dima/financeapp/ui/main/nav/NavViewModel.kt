@@ -40,6 +40,12 @@ class NavViewModel @Inject constructor(
         )
     }
 
+    fun addNewBill(bill: BillItemUiModel.BillUiModel) {
+        val billsList = _bills.value?.toMutableList()
+        billsList?.add(bill)
+        _bills.value = billsList
+    }
+
     override fun onCleared() {
         super.onCleared()
         compositeDisposable.clear()

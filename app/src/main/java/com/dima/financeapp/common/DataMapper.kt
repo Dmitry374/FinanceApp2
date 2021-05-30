@@ -140,5 +140,9 @@ class DataMapper {
         return bills.toBillUiModels()
     }
 
+    fun billToBillUiModel(bill: Bill): BillItemUiModel.BillUiModel {
+        return BillItemUiModel.BillUiModel(bill)
+    }
+
     private fun List<Bill>.toBillUiModels() = this.map { BillItemUiModel.BillUiModel(it) }
 }

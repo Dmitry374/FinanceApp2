@@ -52,7 +52,7 @@ class FinanceInteractor(
             .observeOn(AndroidSchedulers.mainThread())
     }
 
-    fun addBill(name: String, amount: Double): Single<Bill> {
+    fun addBill(name: String, amount: Double): Single<BillItemUiModel.BillUiModel> {
         return financeRepository.addBill(
             AddBillRequestItem(
                 name = name,
