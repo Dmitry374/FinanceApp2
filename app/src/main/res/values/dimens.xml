@@ -26,4 +26,7 @@
     <dimen name="margin_between_bills">8dp</dimen>
 
     <dimen name="bottom_nav_elevation">10dp</dimen>
+
+    <dimen name="card_add_bill_elevation">2dp</dimen>
+    <dimen name="card_add_bill_text_margin">10dp</dimen>
 </resources>

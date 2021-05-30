@@ -23,4 +23,7 @@
     <string name="nav_exchange_rates">Курсы валют ЦБ</string>
 
     <string name="bill_amount_in_rubles">%.2f \u20BD</string>
+
+    <string name="add_name_bill">Название счета</string>
+    <string name="add_initial_value">Начальное значение</string>
 </resources>

@@ -80,7 +80,8 @@ class BillAdapter(
 
         val DIFF_CALLBACK = object : DiffUtil.ItemCallback<BillItemUiModel>() {
             override fun areItemsTheSame(oldItem: BillItemUiModel, newItem: BillItemUiModel): Boolean {
-                return oldItem is BillItemUiModel.BillUiModel == newItem is BillItemUiModel.BillUiModel &&
+                return oldItem is BillItemUiModel.AddNewBillUiModel == newItem is BillItemUiModel.AddNewBillUiModel ||
+                    oldItem is BillItemUiModel.BillUiModel == newItem is BillItemUiModel.BillUiModel &&
                     (oldItem as BillItemUiModel.BillUiModel).bill.id == (newItem as BillItemUiModel.BillUiModel).bill.id
             }
 

@@ -11,14 +11,16 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.dima.financeapp.App
 import com.dima.financeapp.R
+import com.dima.financeapp.ui.main.addbill.AddBillFragment
 import com.dima.financeapp.ui.main.communication.MainTabCommunication
+import com.dima.financeapp.ui.main.communication.NavFragmentCallback
 import com.dima.financeapp.ui.main.main.billadapter.BillItemUiModel
-import com.dima.financeapp.ui.main.main.MainFragment
 import javax.inject.Inject
 
-class NavFragment : Fragment() {
+class NavFragment : Fragment(), NavFragmentCallback {
 
-    private val mainFragment = MainFragment()
+    private val mainFragment = com.dima.financeapp.ui.main.main.MainFragment()
+    private val addBillFragment = AddBillFragment()
 
     private var mainTabCommunication: MainTabCommunication? = null
 
@@ -44,15 +46,15 @@ class NavFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        childFragmentManager.beginTransaction()
+            .replace(R.id.nav_host_container, mainFragment)
+            .commit()
+
         initTabsCommunicationInterfaces()
 
         initObservers()
 
         navViewModel.getBills()
-
-        childFragmentManager.beginTransaction()
-            .replace(R.id.nav_host_container, mainFragment)
-            .commit()
     }
 
     private fun initObservers() {
@@ -65,5 +67,12 @@ class NavFragment : Fragment() {
 
     private fun initTabsCommunicationInterfaces() {
         mainTabCommunication = mainFragment
+    }
+
+    override fun displayAddNewBillFragment() {
+        childFragmentManager.beginTransaction()
+            .replace(R.id.nav_host_container, addBillFragment)
+            .addToBackStack(null)
+            .commit()
     }
 }
