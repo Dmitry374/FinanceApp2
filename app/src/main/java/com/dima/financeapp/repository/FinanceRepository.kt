@@ -2,6 +2,7 @@ package com.dima.financeapp.repository
 
 import com.dima.financeapp.common.DataMapper
 import com.dima.financeapp.database.FinanceDao
+import com.dima.financeapp.model.domain.Bill
 import com.dima.financeapp.model.domain.User
 import com.dima.financeapp.model.net.BillResponse
 import com.dima.financeapp.model.net.RecordResponse
@@ -57,6 +58,10 @@ class FinanceRepository(
         financeDao.clearUserData()
     }
 
+    fun insertBill(billResponse: BillResponse) {
+        financeDao.insertBill(dataMapper.billResponseToBillEntity(billResponse))
+    }
+
     fun insertBills(bills: List<BillResponse>) {
         financeDao.insertBills(dataMapper.listBillResponseToListBillEntity(bills))
     }
@@ -71,5 +76,13 @@ class FinanceRepository(
                 val bills = dataMapper.billsWithRecordsListToBillsList(billsWithRecordsRequest)
                 dataMapper.billsWithRecordsListToBillsUiModelsList(bills)
             }
+    }
+
+    /**
+     * Convert
+     */
+
+    fun getBillFromBillResponse(billResponse: BillResponse): Bill {
+        return dataMapper.billResponseToBill(billResponse)
     }
 }

@@ -54,11 +54,39 @@ class DataMapper {
 
     private fun List<BillResponse>.toBillEntityList() = this.map { it.toBillEntity() }
 
+    fun billResponseToBillEntity(billResponse: BillResponse): BillEntity {
+        return billResponse.toBillEntity()
+    }
+
     private fun BillResponse.toBillEntity() = BillEntity(
         id = this.id,
         name = this.name,
         amount = this.amount,
         color = this.color,
+    )
+
+    fun billResponseToBill(billResponse: BillResponse): Bill {
+        return billResponse.toBill()
+    }
+
+    private fun BillResponse.toBill() = Bill(
+        id = this.id,
+        name = this.name,
+        amount = this.amount,
+        color = this.color,
+        records = this.records.toRecordsList()
+    )
+
+    private fun List<RecordResponse>.toRecordsList() = this.map { it.toRecord() }
+
+    private fun RecordResponse.toRecord() = Record(
+        id = this.id,
+        name = this.name,
+        sum = this.sum,
+        type = this.type,
+        color = this.color,
+        icon = this.icon,
+        date = this.date,
     )
 
     /**

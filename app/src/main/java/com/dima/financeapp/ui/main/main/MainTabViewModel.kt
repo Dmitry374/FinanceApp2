@@ -14,7 +14,7 @@ class MainTabViewModel @Inject constructor(
     fun addBill(name: String, amount: Double) {
         compositeDisposable.add(
             financeInteractor.addBill(name, amount)
-                .subscribe({ billResponse ->
+                .subscribe({ bill ->
 
                 }, { throwable ->
 

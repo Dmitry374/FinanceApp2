@@ -1,7 +1,7 @@
 package com.dima.financeapp.domain
 
+import com.dima.financeapp.model.domain.Bill
 import com.dima.financeapp.model.domain.User
-import com.dima.financeapp.model.net.BillResponse
 import com.dima.financeapp.network.request.AddBillRequestItem
 import com.dima.financeapp.network.request.AuthorisationRequestItem
 import com.dima.financeapp.repository.FinanceRepository
@@ -52,7 +52,7 @@ class FinanceInteractor(
             .observeOn(AndroidSchedulers.mainThread())
     }
 
-    fun addBill(name: String, amount: Double): Single<BillResponse> {
+    fun addBill(name: String, amount: Double): Single<Bill> {
         return financeRepository.addBill(
             AddBillRequestItem(
                 name = name,
@@ -61,6 +61,10 @@ class FinanceInteractor(
             )
         )
             .subscribeOn(Schedulers.io())
+            .map { billResponse ->
+                financeRepository.insertBill(billResponse)
+                financeRepository.getBillFromBillResponse(billResponse)
+            }
             .observeOn(AndroidSchedulers.mainThread())
     }
 
