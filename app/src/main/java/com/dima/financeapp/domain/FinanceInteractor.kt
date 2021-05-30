@@ -1,10 +1,10 @@
 package com.dima.financeapp.domain
 
-import com.dima.financeapp.model.domain.Bill
 import com.dima.financeapp.model.domain.User
 import com.dima.financeapp.network.request.AuthorisationRequestItem
 import com.dima.financeapp.repository.FinanceRepository
 import com.dima.financeapp.sharedpreference.SharedPreferenceHelper
+import com.dima.financeapp.ui.main.main.BillItemUiModel
 import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -60,7 +60,7 @@ class FinanceInteractor(
             .observeOn(AndroidSchedulers.mainThread())
     }
 
-    fun getBills(): Single<List<Bill>> {
+    fun getBills(): Single<List<BillItemUiModel.BillUiModel>> {
         return financeRepository.getBills()
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())

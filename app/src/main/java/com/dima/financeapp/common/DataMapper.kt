@@ -10,6 +10,7 @@ import com.dima.financeapp.model.entity.UserEntity
 import com.dima.financeapp.model.net.BillResponse
 import com.dima.financeapp.model.net.RecordResponse
 import com.dima.financeapp.model.net.UserResponse
+import com.dima.financeapp.ui.main.main.BillItemUiModel
 
 class DataMapper {
 
@@ -103,4 +104,13 @@ class DataMapper {
         icon = this.icon,
         date = this.date
     )
+
+    /**
+     * Bills list to BillUiModel list
+     */
+    fun billsWithRecordsListToBillsUiModelsList(bills: List<Bill>): List<BillItemUiModel.BillUiModel> {
+        return bills.toBillUiModels()
+    }
+
+    private fun List<Bill>.toBillUiModels() = this.map { BillItemUiModel.BillUiModel(it) }
 }

@@ -7,15 +7,16 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dima.financeapp.R
-import com.dima.financeapp.model.domain.Bill
 import com.dima.financeapp.ui.main.communication.MainTabCommunication
 import kotlinx.android.synthetic.main.fragment_main.*
 
 class MainFragment : Fragment(), MainTabCommunication {
 
-    private val billAdapter = BillAdapter { bill ->
+    private val billAdapter = BillAdapter({ billUiModel ->
 
-    }
+    }, {
+
+    })
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -34,7 +35,7 @@ class MainFragment : Fragment(), MainTabCommunication {
         recyclerMainBills.adapter = billAdapter
     }
 
-    override fun displayBills(bills: List<Bill>) {
+    override fun displayBills(bills: List<BillItemUiModel.BillUiModel>) {
         billAdapter.submitList(bills)
     }
 }

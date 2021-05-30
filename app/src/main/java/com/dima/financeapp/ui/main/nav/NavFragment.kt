@@ -11,8 +11,8 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.dima.financeapp.App
 import com.dima.financeapp.R
-import com.dima.financeapp.model.domain.Bill
 import com.dima.financeapp.ui.main.communication.MainTabCommunication
+import com.dima.financeapp.ui.main.main.BillItemUiModel
 import com.dima.financeapp.ui.main.main.MainFragment
 import javax.inject.Inject
 
@@ -59,7 +59,7 @@ class NavFragment : Fragment() {
         navViewModel.bills.observe(viewLifecycleOwner, Observer(::displayBills))
     }
 
-    private fun displayBills(bills: List<Bill>) {
+    private fun displayBills(bills: List<BillItemUiModel.BillUiModel>) {
         mainTabCommunication?.displayBills(bills)
     }
 

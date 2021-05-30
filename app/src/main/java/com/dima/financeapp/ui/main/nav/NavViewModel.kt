@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.dima.financeapp.domain.FinanceInteractor
-import com.dima.financeapp.model.domain.Bill
+import com.dima.financeapp.ui.main.main.BillItemUiModel
 import io.reactivex.disposables.CompositeDisposable
 import javax.inject.Inject
 
@@ -14,8 +14,8 @@ class NavViewModel @Inject constructor(
 
     private val compositeDisposable = CompositeDisposable()
 
-    private val _bills by lazy { MutableLiveData<List<Bill>>() }
-    val bills: LiveData<List<Bill>>
+    private val _bills by lazy { MutableLiveData<List<BillItemUiModel.BillUiModel>>() }
+    val bills: LiveData<List<BillItemUiModel.BillUiModel>>
         get() = _bills
 
     fun getUser() {
