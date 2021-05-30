@@ -1,56 +1,72 @@
 package com.dima.financeapp.ui.main.activity
 
 import android.os.Bundle
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.FragmentManager
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import com.dima.financeapp.App
 import com.dima.financeapp.R
+import com.dima.financeapp.ui.main.addbill.AddBillFragment
 import com.dima.financeapp.ui.main.communication.MainFragmentCommunicationInterface
-import com.dima.financeapp.ui.main.communication.NavFragmentCallback
+import com.dima.financeapp.ui.main.communication.MainTabCommunication
+import com.dima.financeapp.ui.main.main.MainFragment
 import com.dima.financeapp.ui.main.main.billadapter.BillItemUiModel
-import com.dima.financeapp.ui.main.nav.NavFragment
+import com.dima.financeapp.ui.main.nav.NavViewModel
+import javax.inject.Inject
 
 class MainActivity : AppCompatActivity(), MainFragmentCommunicationInterface {
 
-    private val navFragment = NavFragment()
+    private val mainFragment = MainFragment()
+    private val addBillFragment = AddBillFragment()
 
-    private var navFragmentCallback: NavFragmentCallback? = null
+    private var mainTabCommunication: MainTabCommunication? = null
+
+    @Inject
+    lateinit var viewModelFactory: ViewModelProvider.Factory
+
+    private val navViewModel: NavViewModel by viewModels {
+        viewModelFactory
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        (applicationContext as App).appComponent.inject(this)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        initNavFragmentCallback()
-
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction()
-                .replace(R.id.nav_host_main_container, navFragment)
+                .replace(R.id.nav_host_container, mainFragment)
                 .commit()
         }
+
+        initTabsCommunicationInterfaces()
+
+        initObservers()
+
+        navViewModel.getBills()
     }
 
-    private fun initNavFragmentCallback() {
-        navFragmentCallback = navFragment
+    private fun initObservers() {
+        navViewModel.bills.observe(this, Observer(::displayBills))
+    }
+
+    private fun displayBills(bills: List<BillItemUiModel.BillUiModel>) {
+        mainTabCommunication?.displayBills(bills)
+    }
+
+    private fun initTabsCommunicationInterfaces() {
+        mainTabCommunication = mainFragment
     }
 
     override fun displayAddNewBillFragment() {
-        navFragmentCallback?.displayAddNewBillFragment()
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.nav_host_container, addBillFragment)
+            .addToBackStack(null)
+            .commit()
     }
 
     override fun displayNewBill(bill: BillItemUiModel.BillUiModel) {
-        navFragmentCallback?.displayNewBill(bill)
-    }
-
-    override fun onBackPressed() {
-        val fragmentManager: FragmentManager = supportFragmentManager
-        for (frag in fragmentManager.fragments) {
-            if (frag.isVisible) {
-                val childFm: FragmentManager = frag.childFragmentManager
-                if (childFm.backStackEntryCount > 0) {
-                    childFm.popBackStack()
-                    return
-                }
-            }
-        }
-        super.onBackPressed()
+        navViewModel.addNewBill(bill)
     }
 }
