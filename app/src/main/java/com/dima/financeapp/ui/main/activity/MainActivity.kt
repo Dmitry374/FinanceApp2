@@ -21,8 +21,6 @@ class MainActivity : AppCompatActivity(), MainFragmentCommunicationInterface {
     private val mainFragment = MainFragment()
     private val addBillFragment = AddBillFragment()
 
-    private val recordsFragment = RecordsFragment()
-
     private var mainTabCommunication: MainTabCommunication? = null
 
     @Inject
@@ -75,7 +73,7 @@ class MainActivity : AppCompatActivity(), MainFragmentCommunicationInterface {
 
     override fun displayBillRecords(bill: Bill) {
         supportFragmentManager.beginTransaction()
-            .replace(R.id.nav_host_container, recordsFragment)
+            .replace(R.id.nav_host_container, RecordsFragment.newInstance(bill))
             .addToBackStack(null)
             .commit()
     }
