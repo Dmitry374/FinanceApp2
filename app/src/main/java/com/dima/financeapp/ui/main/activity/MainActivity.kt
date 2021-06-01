@@ -12,6 +12,7 @@ import com.dima.financeapp.model.domain.Category
 import com.dima.financeapp.ui.main.addbill.AddBillFragment
 import com.dima.financeapp.ui.main.addrecord.AddRecordFragment
 import com.dima.financeapp.ui.main.addrecord.categories.CategoriesFragment
+import com.dima.financeapp.ui.main.communication.CategoryFragmentCommunication
 import com.dima.financeapp.ui.main.communication.MainFragmentCommunicationInterface
 import com.dima.financeapp.ui.main.communication.MainTabCommunication
 import com.dima.financeapp.ui.main.main.MainFragment
@@ -24,8 +25,10 @@ class MainActivity : AppCompatActivity(), MainFragmentCommunicationInterface {
     private val mainFragment = MainFragment()
     private val addBillFragment = AddBillFragment()
     private val categoriesFragment = CategoriesFragment()
+    private val addRecordFragment = AddRecordFragment()
 
     private var mainTabCommunication: MainTabCommunication? = null
+    private var categoryFragmentCommunication: CategoryFragmentCommunication? = null
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
@@ -62,6 +65,7 @@ class MainActivity : AppCompatActivity(), MainFragmentCommunicationInterface {
 
     private fun initTabsCommunicationInterfaces() {
         mainTabCommunication = mainFragment
+        categoryFragmentCommunication = addRecordFragment
     }
 
     override fun displayAddNewBillFragment() {
@@ -84,19 +88,21 @@ class MainActivity : AppCompatActivity(), MainFragmentCommunicationInterface {
 
     override fun onAddRecordScreen(bill: Bill) {
         supportFragmentManager.beginTransaction()
-            .replace(R.id.nav_host_container, AddRecordFragment.newInstance(bill))
+            .replace(R.id.nav_host_container, addRecordFragment)
             .addToBackStack(null)
             .commit()
+
+        categoryFragmentCommunication?.setBill(bill)
     }
 
     override fun onCategoriesScreen() {
         supportFragmentManager.beginTransaction()
-            .replace(R.id.nav_host_container, categoriesFragment)
+            .add(R.id.nav_host_container, categoriesFragment)
             .addToBackStack(null)
             .commit()
     }
 
     override fun onSelectCategory(category: Category) {
-        TODO("Not yet implemented")
+        categoryFragmentCommunication?.selectCategory(category)
     }
 }

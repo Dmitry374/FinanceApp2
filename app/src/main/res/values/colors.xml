@@ -18,4 +18,6 @@
 
     <color name="color_income">#12FF00</color>
     <color name="color_consumption">#FF0000</color>
+
+    <color name="color_add_category_background">#fafafa</color>
 </resources>

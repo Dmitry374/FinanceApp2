@@ -1,5 +1,6 @@
 package com.dima.financeapp.ui.main.addrecord.categories
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,12 +11,24 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dima.financeapp.R
 import com.dima.financeapp.common.Constants
+import com.dima.financeapp.ui.main.communication.MainFragmentCommunicationInterface
 import kotlinx.android.synthetic.main.fragment_categories.*
 
 class CategoriesFragment : Fragment() {
 
-    private val categoryAdapter = CategoryAdapter(Constants.CATEGORIES) { category ->
+    private var mainFragmentCommunicationInterface: MainFragmentCommunicationInterface? = null
 
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+
+        if (context is MainFragmentCommunicationInterface) {
+            mainFragmentCommunicationInterface = context
+        }
+    }
+
+    private val categoryAdapter = CategoryAdapter(Constants.CATEGORIES) { category ->
+        mainFragmentCommunicationInterface?.onSelectCategory(category)
+        requireActivity().onBackPressed()
     }
 
     override fun onCreateView(

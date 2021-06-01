@@ -8,29 +8,20 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import androidx.appcompat.widget.Toolbar
 import androidx.core.content.res.ResourcesCompat
-import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import com.dima.financeapp.R
 import com.dima.financeapp.common.Constants
 import com.dima.financeapp.common.hideKeyboard
 import com.dima.financeapp.model.domain.Bill
+import com.dima.financeapp.model.domain.Category
+import com.dima.financeapp.ui.main.communication.CategoryFragmentCommunication
 import com.dima.financeapp.ui.main.communication.MainFragmentCommunicationInterface
 import kotlinx.android.synthetic.main.fragment_add_record.*
 
-class AddRecordFragment : Fragment() {
+class AddRecordFragment : Fragment(), CategoryFragmentCommunication {
 
-    companion object {
-        private const val ARG_BILL = "bill_item"
-
-        fun newInstance(
-            bill: Bill
-        ): AddRecordFragment = AddRecordFragment()
-            .apply {
-                arguments = bundleOf(
-                    ARG_BILL to bill
-                )
-            }
-    }
+    private var bill: Bill? = null
+    private var category: Category? = null
 
     private lateinit var recordTypes: Array<String>
 
@@ -93,8 +84,22 @@ class AddRecordFragment : Fragment() {
 
     private fun selectCategory() {
         selectCategory.setOnClickListener {
+            hideKeyboard()
             mainFragmentCommunicationInterface?.onCategoriesScreen()
         }
+    }
+
+    override fun setBill(bill: Bill) {
+        this.bill = bill
+    }
+
+    override fun selectCategory(category: Category) {
+        this.category = category
+        tvFromBill.text = category.name
+    }
+
+    private fun hideKeyboard() {
+        edSumNewRecord.hideKeyboard()
     }
 
     private fun hideSoftKeyBoardAndClearText() {
