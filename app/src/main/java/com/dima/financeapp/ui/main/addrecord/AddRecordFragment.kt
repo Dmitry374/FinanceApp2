@@ -1,5 +1,6 @@
 package com.dima.financeapp.ui.main.addrecord
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -13,6 +14,7 @@ import com.dima.financeapp.R
 import com.dima.financeapp.common.Constants
 import com.dima.financeapp.common.hideKeyboard
 import com.dima.financeapp.model.domain.Bill
+import com.dima.financeapp.ui.main.communication.MainFragmentCommunicationInterface
 import kotlinx.android.synthetic.main.fragment_add_record.*
 
 class AddRecordFragment : Fragment() {
@@ -32,6 +34,16 @@ class AddRecordFragment : Fragment() {
 
     private lateinit var recordTypes: Array<String>
 
+    private var mainFragmentCommunicationInterface: MainFragmentCommunicationInterface? = null
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+
+        if (context is MainFragmentCommunicationInterface) {
+            mainFragmentCommunicationInterface = context
+        }
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
@@ -46,6 +58,8 @@ class AddRecordFragment : Fragment() {
         initToolbar(view)
 
         initSpinner()
+
+        selectCategory()
     }
 
     private fun initToolbar(view: View) {
@@ -74,6 +88,12 @@ class AddRecordFragment : Fragment() {
             override fun onNothingSelected(parent: AdapterView<*>?) {
                 // do nothing
             }
+        }
+    }
+
+    private fun selectCategory() {
+        selectCategory.setOnClickListener {
+            mainFragmentCommunicationInterface?.onCategoriesScreen()
         }
     }
 

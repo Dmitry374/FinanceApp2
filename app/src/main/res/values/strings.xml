@@ -36,9 +36,15 @@
     <string name="button_add_record_consumption">Расход</string>
 
     <string name="text_select_category">Выберите категорию</string>
+    <string name="category">Категория</string>
+    <string name="plus_sign">+</string>
+    <string name="minus_sign">-</string>
+    <string name="currency_rub">RUB</string>
 
     <string-array name="record_type">
         <item>@string/button_add_record_income</item>
         <item>@string/button_add_record_consumption</item>
     </string-array>
+
+    <string name="categories">Категории</string>
 </resources>

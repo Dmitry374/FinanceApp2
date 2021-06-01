@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical">
 
     <include layout="@layout/toolbar" />
@@ -46,10 +47,8 @@
                     android:layout_alignBaseline="@+id/edSumNewRecord"
                     android:layout_alignBottom="@+id/edSumNewRecord"
                     android:layout_alignParentEnd="true"
-                    android:layout_alignParentRight="true"
                     android:layout_marginEnd="16dp"
-                    android:layout_marginRight="16dp"
-                    android:text="RUB"
+                    android:text="@string/currency_rub"
                     android:textColor="#000000"
                     android:textSize="30sp"
                     android:textStyle="bold" />
@@ -80,7 +79,7 @@
                     android:layout_alignBottom="@+id/edSumNewRecord"
                     android:layout_alignParentStart="true"
                     android:textColor="#000000"
-                    android:text="+"
+                    android:text="@string/plus_sign"
                     android:textSize="40sp"
                     android:textStyle="bold" />
 
@@ -96,7 +95,7 @@
                 android:gravity="center">
 
                 <LinearLayout
-                    android:id="@+id/linBtnFirstParam"
+                    android:id="@+id/selectCategory"
                     android:orientation="vertical"
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="10dp"
@@ -111,7 +110,7 @@
 
                     <TextView
                         android:id="@+id/tvFirstParam"
-                        android:text="Категория"
+                        android:text="@string/category"
                         android:layout_marginTop="10dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -124,7 +123,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="10dp"
-                        android:text="Еда и напитки"
+                        tools:text="Еда и напитки"
                         android:maxLines="1"
                         android:ellipsize="end"
                         android:singleLine="true"

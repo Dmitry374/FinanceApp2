@@ -29,4 +29,7 @@
 
     <dimen name="card_add_bill_elevation">2dp</dimen>
     <dimen name="card_add_bill_text_margin">10dp</dimen>
+
+    <dimen name="item_category_margin_start">20dp</dimen>
+    <dimen name="item_category_text_size">16sp</dimen>
 </resources>

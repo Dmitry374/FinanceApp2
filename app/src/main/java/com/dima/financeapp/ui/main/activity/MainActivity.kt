@@ -8,8 +8,10 @@ import androidx.lifecycle.ViewModelProvider
 import com.dima.financeapp.App
 import com.dima.financeapp.R
 import com.dima.financeapp.model.domain.Bill
+import com.dima.financeapp.model.domain.Category
 import com.dima.financeapp.ui.main.addbill.AddBillFragment
 import com.dima.financeapp.ui.main.addrecord.AddRecordFragment
+import com.dima.financeapp.ui.main.addrecord.categories.CategoriesFragment
 import com.dima.financeapp.ui.main.communication.MainFragmentCommunicationInterface
 import com.dima.financeapp.ui.main.communication.MainTabCommunication
 import com.dima.financeapp.ui.main.main.MainFragment
@@ -21,6 +23,7 @@ class MainActivity : AppCompatActivity(), MainFragmentCommunicationInterface {
 
     private val mainFragment = MainFragment()
     private val addBillFragment = AddBillFragment()
+    private val categoriesFragment = CategoriesFragment()
 
     private var mainTabCommunication: MainTabCommunication? = null
 
@@ -84,5 +87,16 @@ class MainActivity : AppCompatActivity(), MainFragmentCommunicationInterface {
             .replace(R.id.nav_host_container, AddRecordFragment.newInstance(bill))
             .addToBackStack(null)
             .commit()
+    }
+
+    override fun onCategoriesScreen() {
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.nav_host_container, categoriesFragment)
+            .addToBackStack(null)
+            .commit()
+    }
+
+    override fun onSelectCategory(category: Category) {
+        TODO("Not yet implemented")
     }
 }
