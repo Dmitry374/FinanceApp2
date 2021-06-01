@@ -1,5 +1,6 @@
 package com.dima.financeapp.ui.main.records
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,6 +12,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dima.financeapp.R
 import com.dima.financeapp.model.domain.Bill
+import com.dima.financeapp.ui.main.communication.MainFragmentCommunicationInterface
 import com.dima.financeapp.ui.main.records.adapter.RecordAdapter
 import kotlinx.android.synthetic.main.fragment_records.*
 
@@ -31,6 +33,16 @@ class RecordsFragment : Fragment() {
 
     private val recordAdapter = RecordAdapter { record ->
 
+    }
+
+    private var mainFragmentCommunicationInterface: MainFragmentCommunicationInterface? = null
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+
+        if (context is MainFragmentCommunicationInterface) {
+            mainFragmentCommunicationInterface = context
+        }
     }
 
     override fun onCreateView(
@@ -62,5 +74,9 @@ class RecordsFragment : Fragment() {
         recordAdapter.bill = bill
         recordAdapter.submitList(bill.records)
         recyclerRecords.adapter = recordAdapter
+
+        createNewRecord.setOnClickListener {
+            mainFragmentCommunicationInterface?.onAddRecordScreen(bill)
+        }
     }
 }

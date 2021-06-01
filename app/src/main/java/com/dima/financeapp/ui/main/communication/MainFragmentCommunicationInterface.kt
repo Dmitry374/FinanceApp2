@@ -8,4 +8,6 @@ interface MainFragmentCommunicationInterface {
     fun displayNewBill(bill: BillItemUiModel.BillUiModel)
 
     fun displayBillRecords(bill: Bill)
+
+    fun onAddRecordScreen(bill: Bill)
 }

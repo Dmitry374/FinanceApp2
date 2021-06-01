@@ -30,4 +30,6 @@
     <string name="add_bill_title">Добавить новый счет</string>
     <string name="add_name_bill">Название счета</string>
     <string name="add_initial_value">Начальное значение</string>
+
+    <string name="add_record_title">Добавить новую запись</string>
 </resources>
