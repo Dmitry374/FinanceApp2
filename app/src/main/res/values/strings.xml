@@ -32,4 +32,13 @@
     <string name="add_initial_value">Начальное значение</string>
 
     <string name="add_record_title">Добавить новую запись</string>
+    <string name="button_add_record_income">Доход</string>
+    <string name="button_add_record_consumption">Расход</string>
+
+    <string name="text_select_category">Выберите категорию</string>
+
+    <string-array name="record_type">
+        <item>@string/button_add_record_income</item>
+        <item>@string/button_add_record_consumption</item>
+    </string-array>
 </resources>
