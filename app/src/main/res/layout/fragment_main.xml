@@ -32,12 +32,13 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="@dimen/padding">
+                android:layout_height="wrap_content">
 
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/margin"
+                    android:layout_marginStart="@dimen/margin"
                     android:layout_marginTop="@dimen/last_records_margin"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/recyclerLastRecord">
@@ -70,6 +71,7 @@
                     android:id="@+id/tvTitleLastRecords"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/margin"
                     android:text="@string/text_last_record"
                     android:textColor="@android:color/black"
                     android:textStyle="bold"
