@@ -20,6 +20,8 @@ object Constants {
     const val RECORD_TYPE_INCOME = "Доход"
     const val RECORD_TYPE_CONSUMPTION = "Расход"
 
+    const val LAST_RECORDS_COUNT = 5
+
     private const val CATEGORY_BUY = "Покупки"
     private const val CATEGORY_FOOD_AND_DRINK = "Еда и напитки"
     private const val CATEGORY_HOUSE = "Жилье"

@@ -20,4 +20,6 @@
     <color name="color_consumption">#FF0000</color>
 
     <color name="color_add_category_background">#fafafa</color>
+
+    <color name="last_records_text_color">#777777</color>
 </resources>

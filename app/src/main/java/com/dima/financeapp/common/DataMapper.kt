@@ -125,6 +125,10 @@ class DataMapper {
         records = this.records.toRecords()
     )
 
+    fun recordEntitiesToRecords(recordEntities: List<RecordEntity>): List<Record> {
+        return recordEntities.toRecords()
+    }
+
     private fun List<RecordEntity>.toRecords() = this.map { it.toRecord() }
 
     private fun RecordEntity.toRecord() = Record(

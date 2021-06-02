@@ -47,4 +47,7 @@ interface FinanceDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertRecord(recordEntity: RecordEntity)
+
+    @Query("SELECT * FROM record ORDER BY id DESC LIMIT :count")
+    fun getLastRecords(count: Int): Single<List<RecordEntity>>
 }

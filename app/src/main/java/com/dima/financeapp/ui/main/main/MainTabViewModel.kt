@@ -22,6 +22,10 @@ class MainTabViewModel @Inject constructor(
     val bill: LiveData<Event<BillItemUiModel.BillUiModel>>
         get() = _bill
 
+    private val _records by lazy { MutableLiveData<List<Record>>() }
+    val records: LiveData<List<Record>>
+        get() = _records
+
     private val _record = MutableLiveData<Event<Record>>()
     val record: LiveData<Event<Record>>
         get() = _record
@@ -42,6 +46,17 @@ class MainTabViewModel @Inject constructor(
             financeInteractor.addRecord(addRecordRequestItem, bill)
                 .subscribe({ record ->
                     _record.value = Event(record)
+                }, { throwable ->
+
+                })
+        )
+    }
+
+    fun getLastRecords(count: Int) {
+        compositeDisposable.add(
+            financeInteractor.getLastRecords(count)
+                .subscribe({ recordsList ->
+                    _records.value = recordsList
                 }, { throwable ->
 
                 })

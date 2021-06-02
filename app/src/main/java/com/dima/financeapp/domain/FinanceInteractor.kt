@@ -107,4 +107,10 @@ class FinanceInteractor(
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
     }
+
+    fun getLastRecords(count: Int): Single<List<Record>> {
+        return financeRepository.getLastRecords(count)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+    }
 }

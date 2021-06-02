@@ -88,6 +88,13 @@ class FinanceRepository(
             }
     }
 
+    fun getLastRecords(count: Int): Single<List<Record>> {
+        return financeDao.getLastRecords(count)
+            .map { recordEntityList ->
+                dataMapper.recordEntitiesToRecords(recordEntityList)
+            }
+    }
+
     /**
      * Convert
      */

@@ -32,4 +32,11 @@
 
     <dimen name="item_category_margin_start">20dp</dimen>
     <dimen name="item_category_text_size">16sp</dimen>
+
+    <dimen name="card_last_records_radius">10dp</dimen>
+
+    <dimen name="last_records_margin">10dp</dimen>
+    <dimen name="image_last_records_size">25dp</dimen>
+    <dimen name="last_records_text_size">14sp</dimen>
+    <dimen name="last_records_text_from_image_margin">12dp</dimen>
 </resources>

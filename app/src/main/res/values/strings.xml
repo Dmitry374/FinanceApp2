@@ -47,4 +47,7 @@
     </string-array>
 
     <string name="categories">Категории</string>
+
+    <string name="text_last_record">Последние записи</string>
+    <string name="text_last_record_count">Последние 5 записей</string>
 </resources>
