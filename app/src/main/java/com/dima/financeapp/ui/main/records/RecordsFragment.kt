@@ -7,29 +7,19 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.Toolbar
 import androidx.core.content.res.ResourcesCompat
-import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dima.financeapp.R
 import com.dima.financeapp.model.domain.Bill
+import com.dima.financeapp.model.domain.Record
 import com.dima.financeapp.ui.main.communication.MainFragmentCommunicationInterface
+import com.dima.financeapp.ui.main.communication.RecordsFragmentCommunication
 import com.dima.financeapp.ui.main.records.adapter.RecordAdapter
 import kotlinx.android.synthetic.main.fragment_records.*
 
-class RecordsFragment : Fragment() {
+class RecordsFragment : Fragment(), RecordsFragmentCommunication {
 
-    companion object {
-        private const val ARG_BILL = "bill_item"
-
-        fun newInstance(
-            bill: Bill
-        ): RecordsFragment = RecordsFragment()
-            .apply {
-                arguments = bundleOf(
-                    ARG_BILL to bill
-                )
-            }
-    }
+    private var bill: Bill? = null
 
     private val recordAdapter = RecordAdapter { record ->
 
@@ -54,19 +44,19 @@ class RecordsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val bill = requireArguments().getParcelable<Bill>(ARG_BILL) as Bill
+        bill?.let { bill ->
+            val toolbar = view.findViewById<Toolbar>(R.id.toolbar)
+            toolbar.title = bill.name
 
-        val toolbar = view.findViewById<Toolbar>(R.id.toolbar)
-        toolbar.title = bill.name
+            toolbar.navigationIcon =
+                ResourcesCompat.getDrawable(resources, R.drawable.ic_arrow_back, null)
 
-        toolbar.navigationIcon =
-            ResourcesCompat.getDrawable(resources, R.drawable.ic_arrow_back, null)
+            toolbar.setNavigationOnClickListener {
+                requireActivity().onBackPressed()
+            }
 
-        toolbar.setNavigationOnClickListener {
-            requireActivity().onBackPressed()
+            initViews(bill)
         }
-
-        initViews(bill)
     }
 
     private fun initViews(bill: Bill) {
@@ -78,5 +68,15 @@ class RecordsFragment : Fragment() {
         createNewRecord.setOnClickListener {
             mainFragmentCommunicationInterface?.onAddRecordScreen(bill)
         }
+    }
+
+    override fun setBill(bill: Bill) {
+        this.bill = bill
+    }
+
+    override fun displayNewRecord(record: Record) {
+        val currentRecords = recordAdapter.getItems().toMutableList()
+        currentRecords.add(record)
+        recordAdapter.submitList(currentRecords)
     }
 }

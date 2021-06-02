@@ -4,6 +4,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.dima.financeapp.domain.FinanceInteractor
+import com.dima.financeapp.model.domain.Bill
+import com.dima.financeapp.model.domain.Record
+import com.dima.financeapp.network.request.AddRecordRequestItem
 import com.dima.financeapp.ui.main.main.billadapter.BillItemUiModel
 import com.dima.financeapp.utils.Event
 import io.reactivex.disposables.CompositeDisposable
@@ -19,11 +22,26 @@ class MainTabViewModel @Inject constructor(
     val bill: LiveData<Event<BillItemUiModel.BillUiModel>>
         get() = _bill
 
+    private val _record = MutableLiveData<Event<Record>>()
+    val record: LiveData<Event<Record>>
+        get() = _record
+
     fun addBill(name: String, amount: Double) {
         compositeDisposable.add(
             financeInteractor.addBill(name, amount)
                 .subscribe({ bill ->
                     _bill.value = Event(bill)
+                }, { throwable ->
+
+                })
+        )
+    }
+
+    fun addRecord(addRecordRequestItem: AddRecordRequestItem, bill: Bill) {
+        compositeDisposable.add(
+            financeInteractor.addRecord(addRecordRequestItem, bill)
+                .subscribe({ record ->
+                    _record.value = Event(record)
                 }, { throwable ->
 
                 })

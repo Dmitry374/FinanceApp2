@@ -2,9 +2,10 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/add_bill"
+        android:id="@+id/add_record"
         android:enabled="true"
         android:icon="@drawable/ic_add"
-        android:title="@string/add_bill_title"
+        android:title="@string/add_record_title"
         app:showAsAction="ifRoom" />
+
 </menu>

@@ -9,12 +9,14 @@ import com.dima.financeapp.App
 import com.dima.financeapp.R
 import com.dima.financeapp.model.domain.Bill
 import com.dima.financeapp.model.domain.Category
+import com.dima.financeapp.model.domain.Record
 import com.dima.financeapp.ui.main.addbill.AddBillFragment
 import com.dima.financeapp.ui.main.addrecord.AddRecordFragment
 import com.dima.financeapp.ui.main.addrecord.categories.CategoriesFragment
 import com.dima.financeapp.ui.main.communication.CategoryFragmentCommunication
 import com.dima.financeapp.ui.main.communication.MainFragmentCommunicationInterface
 import com.dima.financeapp.ui.main.communication.MainTabCommunication
+import com.dima.financeapp.ui.main.communication.RecordsFragmentCommunication
 import com.dima.financeapp.ui.main.main.MainFragment
 import com.dima.financeapp.ui.main.main.billadapter.BillItemUiModel
 import com.dima.financeapp.ui.main.records.RecordsFragment
@@ -25,10 +27,12 @@ class MainActivity : AppCompatActivity(), MainFragmentCommunicationInterface {
     private val mainFragment = MainFragment()
     private val addBillFragment = AddBillFragment()
     private val categoriesFragment = CategoriesFragment()
+    private val recordsFragment = RecordsFragment()
     private val addRecordFragment = AddRecordFragment()
 
     private var mainTabCommunication: MainTabCommunication? = null
     private var categoryFragmentCommunication: CategoryFragmentCommunication? = null
+    private var recordsFragmentCommunication: RecordsFragmentCommunication? = null
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
@@ -66,6 +70,7 @@ class MainActivity : AppCompatActivity(), MainFragmentCommunicationInterface {
     private fun initTabsCommunicationInterfaces() {
         mainTabCommunication = mainFragment
         categoryFragmentCommunication = addRecordFragment
+        recordsFragmentCommunication = recordsFragment
     }
 
     override fun displayAddNewBillFragment() {
@@ -81,9 +86,15 @@ class MainActivity : AppCompatActivity(), MainFragmentCommunicationInterface {
 
     override fun displayBillRecords(bill: Bill) {
         supportFragmentManager.beginTransaction()
-            .replace(R.id.nav_host_container, RecordsFragment.newInstance(bill))
+            .replace(R.id.nav_host_container, recordsFragment)
             .addToBackStack(null)
             .commit()
+
+        recordsFragmentCommunication?.setBill(bill)
+    }
+
+    override fun displayNewRecord(record: Record) {
+        recordsFragmentCommunication?.displayNewRecord(record)
     }
 
     override fun onAddRecordScreen(bill: Bill) {

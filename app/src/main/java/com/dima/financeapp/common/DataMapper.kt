@@ -89,6 +89,10 @@ class DataMapper {
         date = this.date,
     )
 
+    fun recordResponseToRecord(recordResponse: RecordResponse): Record {
+        return recordResponse.toRecord()
+    }
+
     /**
      * Record
      */

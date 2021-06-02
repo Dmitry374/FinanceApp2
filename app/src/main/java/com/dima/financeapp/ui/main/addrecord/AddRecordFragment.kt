@@ -9,16 +9,33 @@ import android.widget.AdapterView
 import androidx.appcompat.widget.Toolbar
 import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
+import com.dima.financeapp.App
 import com.dima.financeapp.R
 import com.dima.financeapp.common.Constants
 import com.dima.financeapp.common.hideKeyboard
 import com.dima.financeapp.model.domain.Bill
 import com.dima.financeapp.model.domain.Category
+import com.dima.financeapp.model.domain.Record
+import com.dima.financeapp.network.request.AddRecordRequestItem
 import com.dima.financeapp.ui.main.communication.CategoryFragmentCommunication
 import com.dima.financeapp.ui.main.communication.MainFragmentCommunicationInterface
+import com.dima.financeapp.ui.main.main.MainTabViewModel
+import com.dima.financeapp.utils.EventObserver
+import kotlinx.android.synthetic.main.fragment_add_bill.*
 import kotlinx.android.synthetic.main.fragment_add_record.*
+import java.util.Date
+import javax.inject.Inject
 
 class AddRecordFragment : Fragment(), CategoryFragmentCommunication {
+
+    @Inject
+    lateinit var viewModelFactory: ViewModelProvider.Factory
+
+    private val mainTabViewModel: MainTabViewModel by viewModels {
+        viewModelFactory
+    }
 
     private var bill: Bill? = null
     private var category: Category? = null
@@ -33,6 +50,8 @@ class AddRecordFragment : Fragment(), CategoryFragmentCommunication {
         if (context is MainFragmentCommunicationInterface) {
             mainFragmentCommunicationInterface = context
         }
+
+        (requireActivity().application as App).appComponent.inject(this)
     }
 
     override fun onCreateView(
@@ -47,6 +66,8 @@ class AddRecordFragment : Fragment(), CategoryFragmentCommunication {
         recordTypes = resources.getStringArray(R.array.record_type)
 
         initToolbar(view)
+
+        initObservers()
 
         initSpinner()
 
@@ -64,6 +85,49 @@ class AddRecordFragment : Fragment(), CategoryFragmentCommunication {
             hideSoftKeyBoardAndClearText()
             requireActivity().onBackPressed()
         }
+
+        toolbar.inflateMenu(R.menu.add_record_menu)
+
+        toolbar.setOnMenuItemClickListener(Toolbar.OnMenuItemClickListener { item ->
+            when (item.itemId) {
+                R.id.add_record -> {
+                    val editTextSumText = edSumNewRecord.text.toString()
+                    if (editTextSumText.isNotEmpty() && category != null) {
+
+                        category?.let { category ->
+                            bill?.let { bill ->
+                                val sum = editTextSumText.toDouble()
+                                mainTabViewModel.addRecord(
+                                    AddRecordRequestItem(
+                                        name = category.name,
+                                        sum = sum,
+                                        type = spinnerTypeRecord.selectedItem.toString(),
+                                        icon = category.icon,
+                                        date = Date().time,
+                                        billId = bill.id
+                                    ), bill
+                                )
+                            }
+                        }
+                    }
+                    return@OnMenuItemClickListener true
+                }
+                else -> {
+                    return@OnMenuItemClickListener true
+                }
+            }
+        })
+    }
+
+    private fun initObservers() {
+        mainTabViewModel.record.observe(viewLifecycleOwner, EventObserver(::displayRecord))
+    }
+
+    private fun displayRecord(record: Record) {
+        hideSoftKeyBoardAndClearText()
+        requireActivity().onBackPressed()
+
+        mainFragmentCommunicationInterface?.displayNewRecord(record)
     }
 
     private fun initSpinner() {

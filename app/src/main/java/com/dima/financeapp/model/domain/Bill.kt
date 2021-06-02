@@ -7,7 +7,7 @@ import kotlinx.android.parcel.Parcelize
 data class Bill(
     val id: Int,
     val name: String,
-    val amount: Double,
+    var amount: Double,
     val color: Int,
     val records: List<Record>
 ) : Parcelable

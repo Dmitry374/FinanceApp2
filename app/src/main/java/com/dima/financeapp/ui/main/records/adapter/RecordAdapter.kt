@@ -29,6 +29,10 @@ class RecordAdapter(
         return differ.currentList.size
     }
 
+    fun getItems(): List<Record> {
+        return differ.currentList
+    }
+
     fun submitList(list: List<Record>) {
         differ.submitList(list)
     }
