@@ -8,8 +8,11 @@ import com.dima.financeapp.common.Constants
 import com.dima.financeapp.common.DataMapper
 import com.dima.financeapp.database.FinanceDao
 import com.dima.financeapp.database.FinanceDatabase
+import com.dima.financeapp.domain.CurrencyInteractor
 import com.dima.financeapp.domain.FinanceInteractor
 import com.dima.financeapp.network.ApiService
+import com.dima.financeapp.network.CurrencyApiService
+import com.dima.financeapp.repository.CurrencyRepository
 import com.dima.financeapp.repository.FinanceRepository
 import com.dima.financeapp.sharedpreference.SharedPreferenceHelper
 import dagger.Module
@@ -41,6 +44,19 @@ class AppModule(private val context: Context) {
             .build()
 
         return retrofit.create(ApiService::class.java)
+    }
+
+    @Singleton
+    @Provides
+    fun provideCurrencyApi(okHttpClient: OkHttpClient): CurrencyApiService {
+        val retrofit = Retrofit.Builder()
+            .baseUrl(Constants.CURRENCY_CRB_BASE_URL)
+            .addConverterFactory(GsonConverterFactory.create())
+            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+            .client(okHttpClient)
+            .build()
+
+        return retrofit.create(CurrencyApiService::class.java)
     }
 
     @Singleton
@@ -95,6 +111,14 @@ class AppModule(private val context: Context) {
 
     @Singleton
     @Provides
+    fun provideCurrencyRepository(
+        currencyApiService: CurrencyApiService
+    ): CurrencyRepository {
+        return CurrencyRepository(currencyApiService)
+    }
+
+    @Singleton
+    @Provides
     fun provideSharedPreferenceHelper(context: Context): SharedPreferenceHelper {
         return SharedPreferenceHelper(
             context.getSharedPreferences(
@@ -111,5 +135,13 @@ class AppModule(private val context: Context) {
         sharedPreferenceHelper: SharedPreferenceHelper
     ): FinanceInteractor {
         return FinanceInteractor(financeRepository, sharedPreferenceHelper)
+    }
+
+    @Singleton
+    @Provides
+    fun provideCurrencyInteractor(
+        currencyRepository: CurrencyRepository
+    ): CurrencyInteractor {
+        return CurrencyInteractor(currencyRepository)
     }
 }

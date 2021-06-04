@@ -5,6 +5,7 @@ import com.dima.financeapp.ui.authorisation.RegistrationFragment
 import com.dima.financeapp.ui.main.activity.MainActivity
 import com.dima.financeapp.ui.main.addbill.AddBillFragment
 import com.dima.financeapp.ui.main.addrecord.AddRecordFragment
+import com.dima.financeapp.ui.main.currencyrates.ExchangeRatesFragment
 import com.dima.financeapp.ui.main.main.MainFragment
 import dagger.Component
 import javax.inject.Singleton
@@ -24,4 +25,6 @@ interface AppComponent {
     fun inject(addBillFragment: AddBillFragment)
 
     fun inject(addRecordFragment: AddRecordFragment)
+
+    fun inject(exchangeRatesFragment: ExchangeRatesFragment)
 }

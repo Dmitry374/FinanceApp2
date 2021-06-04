@@ -18,7 +18,7 @@ import com.dima.financeapp.ui.main.communication.CategoryFragmentCommunication
 import com.dima.financeapp.ui.main.communication.MainFragmentCommunicationInterface
 import com.dima.financeapp.ui.main.communication.MainTabCommunication
 import com.dima.financeapp.ui.main.communication.RecordsFragmentCommunication
-import com.dima.financeapp.ui.main.exchangerates.ExchangeRatesFragment
+import com.dima.financeapp.ui.main.currencyrates.ExchangeRatesFragment
 import com.dima.financeapp.ui.main.main.MainFragment
 import com.dima.financeapp.ui.main.main.billadapter.BillItemUiModel
 import com.dima.financeapp.ui.main.records.RecordsFragment
