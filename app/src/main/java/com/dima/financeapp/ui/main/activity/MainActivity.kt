@@ -3,6 +3,7 @@ package com.dima.financeapp.ui.main.activity
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.dima.financeapp.App
@@ -17,9 +18,11 @@ import com.dima.financeapp.ui.main.communication.CategoryFragmentCommunication
 import com.dima.financeapp.ui.main.communication.MainFragmentCommunicationInterface
 import com.dima.financeapp.ui.main.communication.MainTabCommunication
 import com.dima.financeapp.ui.main.communication.RecordsFragmentCommunication
+import com.dima.financeapp.ui.main.exchangerates.ExchangeRatesFragment
 import com.dima.financeapp.ui.main.main.MainFragment
 import com.dima.financeapp.ui.main.main.billadapter.BillItemUiModel
 import com.dima.financeapp.ui.main.records.RecordsFragment
+import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
 
 class MainActivity : AppCompatActivity(), MainFragmentCommunicationInterface {
@@ -29,6 +32,7 @@ class MainActivity : AppCompatActivity(), MainFragmentCommunicationInterface {
     private val categoriesFragment = CategoriesFragment()
     private val recordsFragment = RecordsFragment()
     private val addRecordFragment = AddRecordFragment()
+    private val exchangeRatesFragment = ExchangeRatesFragment()
 
     private var mainTabCommunication: MainTabCommunication? = null
     private var categoryFragmentCommunication: CategoryFragmentCommunication? = null
@@ -57,6 +61,20 @@ class MainActivity : AppCompatActivity(), MainFragmentCommunicationInterface {
         initObservers()
 
         mainViewModel.getBills()
+
+        bottomNavigation.setOnNavigationItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.nav_main -> {
+                    replaceFragment(mainFragment)
+                    true
+                }
+                R.id.nav_exchange_rates -> {
+                    replaceFragment(exchangeRatesFragment)
+                    true
+                }
+                else -> false
+            }
+        }
     }
 
     private fun initObservers() {
@@ -71,6 +89,12 @@ class MainActivity : AppCompatActivity(), MainFragmentCommunicationInterface {
         mainTabCommunication = mainFragment
         categoryFragmentCommunication = addRecordFragment
         recordsFragmentCommunication = recordsFragment
+    }
+
+    private fun replaceFragment(fragment: Fragment) {
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.nav_host_container, fragment)
+            .commit()
     }
 
     override fun displayAddNewBillFragment() {
