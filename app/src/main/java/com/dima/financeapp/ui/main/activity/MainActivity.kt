@@ -11,10 +11,12 @@ import com.dima.financeapp.R
 import com.dima.financeapp.model.domain.Bill
 import com.dima.financeapp.model.domain.Category
 import com.dima.financeapp.model.domain.Record
+import com.dima.financeapp.model.net.currency.CurrencyRatesResponse
 import com.dima.financeapp.ui.main.addbill.AddBillFragment
 import com.dima.financeapp.ui.main.addrecord.AddRecordFragment
 import com.dima.financeapp.ui.main.addrecord.categories.CategoriesFragment
 import com.dima.financeapp.ui.main.communication.CategoryFragmentCommunication
+import com.dima.financeapp.ui.main.communication.ExchangeRatesCommunication
 import com.dima.financeapp.ui.main.communication.MainFragmentCommunicationInterface
 import com.dima.financeapp.ui.main.communication.MainTabCommunication
 import com.dima.financeapp.ui.main.communication.RecordsFragmentCommunication
@@ -39,6 +41,7 @@ class MainActivity : AppCompatActivity(), MainFragmentCommunicationInterface {
     private var mainTabCommunication: MainTabCommunication? = null
     private var categoryFragmentCommunication: CategoryFragmentCommunication? = null
     private var recordsFragmentCommunication: RecordsFragmentCommunication? = null
+    private var exchangeRatesCommunication: ExchangeRatesCommunication? = null
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
@@ -64,6 +67,8 @@ class MainActivity : AppCompatActivity(), MainFragmentCommunicationInterface {
 
         mainViewModel.getBills()
 
+        mainViewModel.loadCurrencyRates()
+
         bottomNavigation.setOnNavigationItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.nav_main -> {
@@ -85,16 +90,22 @@ class MainActivity : AppCompatActivity(), MainFragmentCommunicationInterface {
 
     private fun initObservers() {
         mainViewModel.bills.observe(this, Observer(::displayBills))
+        mainViewModel.currencyRates.observe(this, Observer(::displayCurrencyRates))
     }
 
     private fun displayBills(bills: List<BillItemUiModel.BillUiModel>) {
         mainTabCommunication?.displayBills(bills)
     }
 
+    private fun displayCurrencyRates(currencyRatesResponse: CurrencyRatesResponse) {
+        exchangeRatesCommunication?.displayCurrencyRates(currencyRatesResponse)
+    }
+
     private fun initTabsCommunicationInterfaces() {
         mainTabCommunication = mainFragment
         categoryFragmentCommunication = addRecordFragment
         recordsFragmentCommunication = recordsFragment
+        exchangeRatesCommunication = exchangeRatesFragment
     }
 
     private fun replaceFragment(fragment: Fragment) {

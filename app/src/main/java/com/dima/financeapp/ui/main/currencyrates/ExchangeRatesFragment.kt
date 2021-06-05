@@ -1,39 +1,21 @@
 package com.dima.financeapp.ui.main.currencyrates
 
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.dima.financeapp.App
 import com.dima.financeapp.R
 import com.dima.financeapp.model.net.currency.CurrencyRatesResponse
 import com.dima.financeapp.model.net.currency.Valuta
+import com.dima.financeapp.ui.main.communication.ExchangeRatesCommunication
 import com.dima.financeapp.ui.main.currencyrates.adapter.ExchangeRatesAdapter
 import kotlinx.android.synthetic.main.fragment_exchange_rates.*
-import javax.inject.Inject
 
-class ExchangeRatesFragment : Fragment() {
-
-    @Inject
-    lateinit var viewModelFactory: ViewModelProvider.Factory
-
-    private val currencyViewModel: CurrencyViewModel by viewModels {
-        viewModelFactory
-    }
+class ExchangeRatesFragment : Fragment(), ExchangeRatesCommunication {
 
     private val exchangeRatesAdapter = ExchangeRatesAdapter()
-
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-
-        (requireActivity().application as App).appComponent.inject(this)
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -45,10 +27,6 @@ class ExchangeRatesFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         initViews()
-
-        initObservers()
-
-        currencyViewModel.loadCurrencyRates()
     }
 
     private fun initViews() {
@@ -56,11 +34,7 @@ class ExchangeRatesFragment : Fragment() {
         recyclerExchangeRates.adapter = exchangeRatesAdapter
     }
 
-    private fun initObservers() {
-        currencyViewModel.currencyRates.observe(viewLifecycleOwner, Observer(::displayCurrencyRates))
-    }
-
-    private fun displayCurrencyRates(currencyRatesResponse: CurrencyRatesResponse) {
+    override fun displayCurrencyRates(currencyRatesResponse: CurrencyRatesResponse) {
         exchangeRatesAdapter.setCurrencyDate(currencyRatesResponse.Date)
         exchangeRatesAdapter.submitList(getCurrenciesList(currencyRatesResponse))
     }
