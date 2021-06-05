@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.dima.financeapp.domain.CurrencyInteractor
 import com.dima.financeapp.domain.FinanceInteractor
+import com.dima.financeapp.model.domain.User
 import com.dima.financeapp.model.net.currency.CurrencyRatesResponse
 import com.dima.financeapp.ui.main.main.billadapter.BillItemUiModel
 import io.reactivex.disposables.CompositeDisposable
@@ -16,6 +17,10 @@ class MainViewModel @Inject constructor(
 ) : ViewModel() {
 
     private val compositeDisposable = CompositeDisposable()
+
+    private val _user = MutableLiveData<User>()
+    val user: LiveData<User>
+        get() = _user
 
     private val _bills by lazy { MutableLiveData<List<BillItemUiModel.BillUiModel>>() }
     val bills: LiveData<List<BillItemUiModel.BillUiModel>>
@@ -29,7 +34,7 @@ class MainViewModel @Inject constructor(
         compositeDisposable.add(
             financeInteractor.getUser()
                 .subscribe({ user ->
-
+                    _user.value = user
                 }, { throwable ->
 
                 })

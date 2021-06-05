@@ -11,6 +11,7 @@ import com.dima.financeapp.R
 import com.dima.financeapp.model.domain.Bill
 import com.dima.financeapp.model.domain.Category
 import com.dima.financeapp.model.domain.Record
+import com.dima.financeapp.model.domain.User
 import com.dima.financeapp.model.net.currency.CurrencyRatesResponse
 import com.dima.financeapp.ui.main.addbill.AddBillFragment
 import com.dima.financeapp.ui.main.addrecord.AddRecordFragment
@@ -19,6 +20,7 @@ import com.dima.financeapp.ui.main.communication.CategoryFragmentCommunication
 import com.dima.financeapp.ui.main.communication.ExchangeRatesCommunication
 import com.dima.financeapp.ui.main.communication.MainFragmentCommunicationInterface
 import com.dima.financeapp.ui.main.communication.MainTabCommunication
+import com.dima.financeapp.ui.main.communication.ProfileFragmentCommunication
 import com.dima.financeapp.ui.main.communication.RecordsFragmentCommunication
 import com.dima.financeapp.ui.main.currencyrates.ExchangeRatesFragment
 import com.dima.financeapp.ui.main.main.MainFragment
@@ -42,6 +44,7 @@ class MainActivity : AppCompatActivity(), MainFragmentCommunicationInterface {
     private var categoryFragmentCommunication: CategoryFragmentCommunication? = null
     private var recordsFragmentCommunication: RecordsFragmentCommunication? = null
     private var exchangeRatesCommunication: ExchangeRatesCommunication? = null
+    private var profileFragmentCommunication: ProfileFragmentCommunication? = null
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
@@ -64,6 +67,8 @@ class MainActivity : AppCompatActivity(), MainFragmentCommunicationInterface {
         initTabsCommunicationInterfaces()
 
         initObservers()
+
+        mainViewModel.getUser()
 
         mainViewModel.getBills()
 
@@ -89,8 +94,13 @@ class MainActivity : AppCompatActivity(), MainFragmentCommunicationInterface {
     }
 
     private fun initObservers() {
+        mainViewModel.user.observe(this, Observer(::displayUser))
         mainViewModel.bills.observe(this, Observer(::displayBills))
         mainViewModel.currencyRates.observe(this, Observer(::displayCurrencyRates))
+    }
+
+    private fun displayUser(user: User) {
+        profileFragmentCommunication?.setUser(user)
     }
 
     private fun displayBills(bills: List<BillItemUiModel.BillUiModel>) {
@@ -106,6 +116,7 @@ class MainActivity : AppCompatActivity(), MainFragmentCommunicationInterface {
         categoryFragmentCommunication = addRecordFragment
         recordsFragmentCommunication = recordsFragment
         exchangeRatesCommunication = exchangeRatesFragment
+        profileFragmentCommunication = profileFragment
     }
 
     private fun replaceFragment(fragment: Fragment) {

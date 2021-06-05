@@ -50,4 +50,20 @@
 
     <string name="text_last_record">Последние записи</string>
     <string name="text_last_record_count">Последние 5 записей</string>
+
+    <string name="text_name">Имя</string>
+    <string name="text_surname">Фамилия</string>
+    <string name="text_date_of_birth">Дата рождения</string>
+    <string name="text_empty">Пусто</string>
+    <string name="text_exit">Выйти</string>
+    <string name="text_select_gender">Выберите пол</string>
+
+    <string name="text_male">Мужской</string>
+    <string name="text_female">Женский</string>
+
+    <string-array name="select_gender_list">
+        <item>Пусто</item>
+        <item>Мужской</item>
+        <item>Женский</item>
+    </string-array>
 </resources>
