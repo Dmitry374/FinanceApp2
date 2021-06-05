@@ -7,6 +7,7 @@ import com.dima.financeapp.model.domain.User
 import com.dima.financeapp.network.request.AddBillRequestItem
 import com.dima.financeapp.network.request.AddRecordRequestItem
 import com.dima.financeapp.network.request.AuthorisationRequestItem
+import com.dima.financeapp.network.request.UserEditRequest
 import com.dima.financeapp.repository.FinanceRepository
 import com.dima.financeapp.sharedpreference.SharedPreferenceHelper
 import com.dima.financeapp.ui.main.main.billadapter.BillItemUiModel
@@ -51,6 +52,15 @@ class FinanceInteractor(
                 sharedPreferencesHelper.setUserEmail(userResponse.email)
 
                 financeRepository.insertUser(userResponse)
+            }
+            .observeOn(AndroidSchedulers.mainThread())
+    }
+
+    fun editUser(userEditRequest: UserEditRequest): Single<Unit> {
+        return financeRepository.editUser(userEditRequest)
+            .subscribeOn(Schedulers.io())
+            .map { userResponse ->
+                financeRepository.updateUser(userResponse)
             }
             .observeOn(AndroidSchedulers.mainThread())
     }

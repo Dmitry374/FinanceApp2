@@ -2,6 +2,7 @@ package com.dima.financeapp.ui.main.profile
 
 import android.annotation.SuppressLint
 import android.app.DatePickerDialog
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -14,6 +15,8 @@ import com.bumptech.glide.Glide
 import com.dima.financeapp.R
 import com.dima.financeapp.common.Constants
 import com.dima.financeapp.model.domain.User
+import com.dima.financeapp.network.request.UserEditRequest
+import com.dima.financeapp.ui.main.communication.MainFragmentCommunicationInterface
 import com.dima.financeapp.ui.main.communication.ProfileFragmentCommunication
 import kotlinx.android.synthetic.main.fragment_add_bill.*
 import kotlinx.android.synthetic.main.fragment_profile.*
@@ -23,11 +26,21 @@ class ProfileFragment : Fragment(), ProfileFragmentCommunication {
 
     private var user: User? = null
 
-    lateinit var dateOfBirth: String
-    lateinit var gender: String
+    var dateOfBirth: String = Constants.EMPTY_STRING
+    var gender: String = Constants.EMPTY_STRING
 
     override fun setUser(user: User) {
         this.user = user
+    }
+
+    private var mainFragmentCommunicationInterface: MainFragmentCommunicationInterface? = null
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+
+        if (context is MainFragmentCommunicationInterface) {
+            mainFragmentCommunicationInterface = context
+        }
     }
 
     override fun onCreateView(
@@ -42,7 +55,6 @@ class ProfileFragment : Fragment(), ProfileFragmentCommunication {
         initToolbar(view)
 
         user?.let { initViews(it) }
-
     }
 
     private fun initToolbar(view: View) {
@@ -54,7 +66,22 @@ class ProfileFragment : Fragment(), ProfileFragmentCommunication {
         toolbar.setOnMenuItemClickListener(Toolbar.OnMenuItemClickListener { item ->
             when (item.itemId) {
                 R.id.apply_user_settings -> {
+                    user?.let { user ->
+                        val name = edNameProfile.text.toString()
+                        val surname = edSurnameProfile.text.toString()
+                        if (name.isNotEmpty() && surname.isNotEmpty()) {
+                            val userEditRequest = UserEditRequest(
+                                id = user.id,
+                                name = name,
+                                surname = surname,
+                                email = user.email,
+                                datebirth = dateOfBirth,
+                                gender = gender
+                            )
 
+                            mainFragmentCommunicationInterface?.editUser(userEditRequest)
+                        }
+                    }
                     return@OnMenuItemClickListener true
                 }
                 else -> {

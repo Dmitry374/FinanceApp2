@@ -1,7 +1,9 @@
 package com.dima.financeapp.ui.main.activity
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -13,6 +15,7 @@ import com.dima.financeapp.model.domain.Category
 import com.dima.financeapp.model.domain.Record
 import com.dima.financeapp.model.domain.User
 import com.dima.financeapp.model.net.currency.CurrencyRatesResponse
+import com.dima.financeapp.network.request.UserEditRequest
 import com.dima.financeapp.ui.main.addbill.AddBillFragment
 import com.dima.financeapp.ui.main.addrecord.AddRecordFragment
 import com.dima.financeapp.ui.main.addrecord.categories.CategoriesFragment
@@ -27,6 +30,7 @@ import com.dima.financeapp.ui.main.main.MainFragment
 import com.dima.financeapp.ui.main.main.billadapter.BillItemUiModel
 import com.dima.financeapp.ui.main.profile.ProfileFragment
 import com.dima.financeapp.ui.main.records.RecordsFragment
+import com.dima.financeapp.utils.EventObserver
 import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
 
@@ -97,6 +101,7 @@ class MainActivity : AppCompatActivity(), MainFragmentCommunicationInterface {
         mainViewModel.user.observe(this, Observer(::displayUser))
         mainViewModel.bills.observe(this, Observer(::displayBills))
         mainViewModel.currencyRates.observe(this, Observer(::displayCurrencyRates))
+        mainViewModel.updateUserDataSuccess.observe(this, EventObserver(::showUpdateUserDataStatus))
     }
 
     private fun displayUser(user: User) {
@@ -109,6 +114,18 @@ class MainActivity : AppCompatActivity(), MainFragmentCommunicationInterface {
 
     private fun displayCurrencyRates(currencyRatesResponse: CurrencyRatesResponse) {
         exchangeRatesCommunication?.displayCurrencyRates(currencyRatesResponse)
+    }
+
+    private fun showUpdateUserDataStatus(isUserDataUpdateSuccess: Boolean) {
+        if (isUserDataUpdateSuccess) {
+            showToastMessage(R.string.edit_user_data_success)
+        } else {
+            showToastMessage(R.string.edit_user_data_error)
+        }
+    }
+
+    private fun showToastMessage(@StringRes message: Int) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
 
     private fun initTabsCommunicationInterfaces() {
@@ -147,6 +164,10 @@ class MainActivity : AppCompatActivity(), MainFragmentCommunicationInterface {
 
     override fun displayNewRecord(record: Record) {
         recordsFragmentCommunication?.displayNewRecord(record)
+    }
+
+    override fun editUser(userEditRequest: UserEditRequest) {
+        mainViewModel.editUser(userEditRequest)
     }
 
     override fun onAddRecordScreen(bill: Bill) {

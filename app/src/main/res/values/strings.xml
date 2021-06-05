@@ -68,4 +68,7 @@
     </string-array>
 
     <string name="apply_user_settings">Применить настройки пользователя</string>
+
+    <string name="edit_user_data_success">Данные пользователя успешно обновлены</string>
+    <string name="edit_user_data_error">Ошибка во время обновленя данных пользователя</string>
 </resources>

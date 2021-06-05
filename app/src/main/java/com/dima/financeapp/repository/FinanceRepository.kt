@@ -2,7 +2,6 @@ package com.dima.financeapp.repository
 
 import com.dima.financeapp.common.DataMapper
 import com.dima.financeapp.database.FinanceDao
-import com.dima.financeapp.model.domain.Bill
 import com.dima.financeapp.model.domain.Record
 import com.dima.financeapp.model.domain.User
 import com.dima.financeapp.model.net.BillResponse
@@ -12,6 +11,7 @@ import com.dima.financeapp.network.ApiService
 import com.dima.financeapp.network.request.AddBillRequestItem
 import com.dima.financeapp.network.request.AddRecordRequestItem
 import com.dima.financeapp.network.request.AuthorisationRequestItem
+import com.dima.financeapp.network.request.UserEditRequest
 import com.dima.financeapp.ui.main.main.billadapter.BillItemUiModel
 import io.reactivex.Single
 
@@ -31,6 +31,10 @@ class FinanceRepository(
 
     fun registerUser(authorisationRequestItem: AuthorisationRequestItem): Single<UserResponse> {
         return apiService.registerUser(authorisationRequestItem)
+    }
+
+    fun editUser(userEditRequest: UserEditRequest): Single<UserResponse> {
+        return apiService.editUser(userEditRequest.id, userEditRequest)
     }
 
     fun addBill(addBillRequestItem: AddBillRequestItem): Single<BillResponse> {

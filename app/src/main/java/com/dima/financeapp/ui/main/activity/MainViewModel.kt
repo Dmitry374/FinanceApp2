@@ -7,7 +7,9 @@ import com.dima.financeapp.domain.CurrencyInteractor
 import com.dima.financeapp.domain.FinanceInteractor
 import com.dima.financeapp.model.domain.User
 import com.dima.financeapp.model.net.currency.CurrencyRatesResponse
+import com.dima.financeapp.network.request.UserEditRequest
 import com.dima.financeapp.ui.main.main.billadapter.BillItemUiModel
+import com.dima.financeapp.utils.Event
 import io.reactivex.disposables.CompositeDisposable
 import javax.inject.Inject
 
@@ -29,6 +31,10 @@ class MainViewModel @Inject constructor(
     private val _currencyRates by lazy { MutableLiveData<CurrencyRatesResponse>() }
     val currencyRates: LiveData<CurrencyRatesResponse>
         get() = _currencyRates
+
+    private val _updateUserDataSuccess by lazy { MutableLiveData<Event<Boolean>>() }
+    val updateUserDataSuccess: LiveData<Event<Boolean>>
+        get() = _updateUserDataSuccess
 
     fun getUser() {
         compositeDisposable.add(
@@ -65,6 +71,17 @@ class MainViewModel @Inject constructor(
                     _currencyRates.value = currencyRates
                 }, { throwable ->
 
+                })
+        )
+    }
+
+    fun editUser(userEditRequest: UserEditRequest) {
+        compositeDisposable.add(
+            financeInteractor.editUser(userEditRequest)
+                .subscribe({
+                    _updateUserDataSuccess.value = Event(true)
+                }, {
+                    _updateUserDataSuccess.value = Event(false)
                 })
         )
     }
