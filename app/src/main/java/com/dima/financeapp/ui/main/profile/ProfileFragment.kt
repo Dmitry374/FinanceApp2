@@ -8,12 +8,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.dima.financeapp.R
 import com.dima.financeapp.common.Constants
 import com.dima.financeapp.model.domain.User
 import com.dima.financeapp.ui.main.communication.ProfileFragmentCommunication
+import kotlinx.android.synthetic.main.fragment_add_bill.*
 import kotlinx.android.synthetic.main.fragment_profile.*
 import java.util.Calendar
 
@@ -37,69 +39,93 @@ class ProfileFragment : Fragment(), ProfileFragmentCommunication {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        user?.let { user ->
-            edNameProfile.setText(user.name)
-            edSurnameProfile.setText(user.surname)
-            edEmailProfile.setText(user.email)
+        initToolbar(view)
 
-            if (user.datebirth == Constants.EMPTY_STRING) {
-                btnSetDateOfBirthProfile.text = getText(R.string.text_empty)
-            } else {
-                btnSetDateOfBirthProfile.text = user.datebirth
-            }
+        user?.let { initViews(it) }
 
-            dateOfBirth = btnSetDateOfBirthProfile.text.toString()
+    }
 
-            Glide.with(imgUserProfile)
-                .load(R.drawable.profile_img)
-                .circleCrop()
-                .into(imgUserProfile)
+    private fun initToolbar(view: View) {
+        val toolbar = view.findViewById<Toolbar>(R.id.toolbar)
+        toolbar.title = resources.getString(R.string.nav_profile)
 
-            if (user.datebirth.isEmpty()) {
-                btnSetDateOfBirthProfile.text = getText(R.string.text_empty)
-            } else {
-                btnSetDateOfBirthProfile.text = user.datebirth
-            }
+        toolbar.inflateMenu(R.menu.profile_menu)
 
-            // Массив пол
-            val listGender = resources.getStringArray(R.array.select_gender_list)
+        toolbar.setOnMenuItemClickListener(Toolbar.OnMenuItemClickListener { item ->
+            when (item.itemId) {
+                R.id.apply_user_settings -> {
 
-            // адаптер
-            val adapter = ArrayAdapter(requireActivity(), android.R.layout.simple_spinner_item, listGender)
-            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-
-            spinnerGenderProfile.adapter = adapter
-
-            spinnerGenderProfile.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-                override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                    gender = listGender[position]
+                    return@OnMenuItemClickListener true
                 }
-
-                override fun onNothingSelected(parent: AdapterView<*>?) {
-                    // do nothing
+                else -> {
+                    return@OnMenuItemClickListener true
                 }
             }
+        })
+    }
 
-            // Spinner по умолчанию
-            if (user.gender.isEmpty()) {
-                spinnerGenderProfile.setSelection(0)
-            } else {
-                when (user.gender) {
-                    getText(R.string.text_male) -> spinnerGenderProfile.setSelection(1)
-                    getText(R.string.text_female) -> spinnerGenderProfile.setSelection(2)
-                }
+    private fun initViews(user: User) {
+
+        edNameProfile.setText(user.name)
+        edSurnameProfile.setText(user.surname)
+        edEmailProfile.setText(user.email)
+
+        if (user.datebirth == Constants.EMPTY_STRING) {
+            btnSetDateOfBirthProfile.text = getText(R.string.text_empty)
+        } else {
+            btnSetDateOfBirthProfile.text = user.datebirth
+        }
+
+        dateOfBirth = btnSetDateOfBirthProfile.text.toString()
+
+        Glide.with(imgUserProfile)
+            .load(R.drawable.profile_img)
+            .circleCrop()
+            .into(imgUserProfile)
+
+        if (user.datebirth.isEmpty()) {
+            btnSetDateOfBirthProfile.text = getText(R.string.text_empty)
+        } else {
+            btnSetDateOfBirthProfile.text = user.datebirth
+        }
+
+        // Массив пол
+        val listGender = resources.getStringArray(R.array.select_gender_list)
+
+        // адаптер
+        val adapter = ArrayAdapter(requireActivity(), android.R.layout.simple_spinner_item, listGender)
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+
+        spinnerGenderProfile.adapter = adapter
+
+        spinnerGenderProfile.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                gender = listGender[position]
             }
 
-            // Выход из аккаунта
-            btnExitProfile.setOnClickListener {
-
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+                // do nothing
             }
+        }
 
-            // Set Date Of Birth
-            btnSetDateOfBirthProfile.setOnClickListener {
-                getDateOfBirth()
+        // Spinner по умолчанию
+        if (user.gender.isEmpty()) {
+            spinnerGenderProfile.setSelection(0)
+        } else {
+            when (user.gender) {
+                getText(R.string.text_male) -> spinnerGenderProfile.setSelection(1)
+                getText(R.string.text_female) -> spinnerGenderProfile.setSelection(2)
             }
+        }
 
+        // Выход из аккаунта
+        btnExitProfile.setOnClickListener {
+
+        }
+
+        // Set Date Of Birth
+        btnSetDateOfBirthProfile.setOnClickListener {
+            getDateOfBirth()
         }
     }
 

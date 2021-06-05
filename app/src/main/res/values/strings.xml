@@ -66,4 +66,6 @@
         <item>Мужской</item>
         <item>Женский</item>
     </string-array>
+
+    <string name="apply_user_settings">Применить настройки пользователя</string>
 </resources>
