@@ -21,6 +21,7 @@ import com.dima.financeapp.ui.main.communication.RecordsFragmentCommunication
 import com.dima.financeapp.ui.main.currencyrates.ExchangeRatesFragment
 import com.dima.financeapp.ui.main.main.MainFragment
 import com.dima.financeapp.ui.main.main.billadapter.BillItemUiModel
+import com.dima.financeapp.ui.main.profile.ProfileFragment
 import com.dima.financeapp.ui.main.records.RecordsFragment
 import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
@@ -33,6 +34,7 @@ class MainActivity : AppCompatActivity(), MainFragmentCommunicationInterface {
     private val recordsFragment = RecordsFragment()
     private val addRecordFragment = AddRecordFragment()
     private val exchangeRatesFragment = ExchangeRatesFragment()
+    private val profileFragment = ProfileFragment()
 
     private var mainTabCommunication: MainTabCommunication? = null
     private var categoryFragmentCommunication: CategoryFragmentCommunication? = null
@@ -70,6 +72,10 @@ class MainActivity : AppCompatActivity(), MainFragmentCommunicationInterface {
                 }
                 R.id.nav_exchange_rates -> {
                     replaceFragment(exchangeRatesFragment)
+                    true
+                }
+                R.id.nav_profile -> {
+                    replaceFragment(profileFragment)
                     true
                 }
                 else -> false
