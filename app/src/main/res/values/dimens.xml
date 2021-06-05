@@ -39,4 +39,18 @@
     <dimen name="image_last_records_size">25dp</dimen>
     <dimen name="last_records_text_size">14sp</dimen>
     <dimen name="last_records_text_from_image_margin">12dp</dimen>
+
+    <dimen name="currency_item_card_margin_top">5dp</dimen>
+    <dimen name="currency_corner_radius">8dp</dimen>
+    <dimen name="currency_card_elevation">2dp</dimen>
+    <dimen name="currency_item_card_height">100dp</dimen>
+    <dimen name="currency_item_card_padding">10dp</dimen>
+    <dimen name="currency_item_type_difference_icon_size">25dp</dimen>
+    <dimen name="currency_item_type_difference_text_margin">5dp</dimen>
+    <dimen name="currency_item_type_difference_text_size">18sp</dimen>
+    <dimen name="currency_item_exchange_text_size">18sp</dimen>
+    <dimen name="currency_name_margin">5dp</dimen>
+    <dimen name="currency_name_text_size">12sp</dimen>
+    <dimen name="currency_date_exchange_margin">5dp</dimen>
+    <dimen name="currency_date_exchange_text_size">16sp</dimen>
 </resources>

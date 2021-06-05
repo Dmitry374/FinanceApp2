@@ -23,6 +23,8 @@ object Constants {
 
     const val LAST_RECORDS_COUNT = 5
 
+    const val EMPTY_STRING = ""
+
     private const val CATEGORY_BUY = "Покупки"
     private const val CATEGORY_FOOD_AND_DRINK = "Еда и напитки"
     private const val CATEGORY_HOUSE = "Жилье"

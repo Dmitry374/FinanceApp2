@@ -22,7 +22,7 @@ class CurrencyViewModel @Inject constructor(
         compositeDisposable.add(
             currencyInteractor.loadCurrencyRates()
                 .subscribe({ currencyRates ->
-
+                    _currencyRates.value = currencyRates
                 }, { throwable ->
 
                 })
