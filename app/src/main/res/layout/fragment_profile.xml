@@ -12,72 +12,65 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="16dp"
+            android:padding="@dimen/padding"
             android:orientation="vertical" >
 
+            <ImageView
+                android:id="@+id/imgUserProfile"
+                android:layout_width="@dimen/profile_avatar_size"
+                android:layout_height="@dimen/profile_avatar_size"
+                android:layout_margin="@dimen/margin"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toTopOf="@+id/textInputLayoutEmail"
+                android:src="@mipmap/ic_launcher_round" />
+
             <LinearLayout
-                android:layout_width="match_parent"
+                android:id="@+id/linearNameAndSurname"
+                android:layout_width="0dp"
+                app:layout_constraintEnd_toEndOf="parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/imgUserProfile"
+                android:layout_marginStart="@dimen/margin"
+                android:orientation="vertical">
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_weight="0.3"
-                    android:gravity="center"
-                    android:orientation="vertical">
-
-                    <ImageView
-                        android:id="@+id/imgUserProfile"
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
-                        android:layout_margin="15dp"
-                        android:src="@mipmap/ic_launcher_round" />
-
-                </LinearLayout>
-
-                <LinearLayout
+                <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.7"
-                    android:layout_marginStart="@dimen/margin"
-                    android:orientation="vertical">
+                    android:layout_height="wrap_content">
 
-                    <com.google.android.material.textfield.TextInputLayout
+                    <EditText
+                        android:id="@+id/edNameProfile"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:hint="@string/text_name"
+                        android:inputType="text|textCapWords"
+                        android:singleLine="true" />
+                </com.google.android.material.textfield.TextInputLayout>
 
-                        <EditText
-                            android:id="@+id/edNameProfile"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:hint="@string/text_name"
-                            android:inputType="text|textCapWords"
-                            android:singleLine="true" />
-                    </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
-                    <com.google.android.material.textfield.TextInputLayout
+                    <EditText
+                        android:id="@+id/edSurnameProfile"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-                        <EditText
-                            android:id="@+id/edSurnameProfile"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:hint="@string/text_surname"
-                            android:inputType="text|textCapWords"
-                            android:singleLine="true" />
-                    </com.google.android.material.textfield.TextInputLayout>
-
-                </LinearLayout>
+                        android:layout_height="wrap_content"
+                        android:hint="@string/text_surname"
+                        android:inputType="text|textCapWords"
+                        android:singleLine="true" />
+                </com.google.android.material.textfield.TextInputLayout>
 
             </LinearLayout>
 
 
             <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayoutEmail"
+                app:layout_constraintTop_toBottomOf="@+id/linearNameAndSurname"
+                app:layout_constraintStart_toStartOf="parent"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
@@ -92,6 +85,9 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <LinearLayout
+                android:id="@+id/linearDateBirthAndGender"
+                app:layout_constraintTop_toBottomOf="@+id/textInputLayoutEmail"
+                app:layout_constraintStart_toStartOf="parent"
                 android:orientation="horizontal"
                 android:layout_marginTop="15dp"
                 android:layout_width="match_parent"
@@ -149,13 +145,15 @@
 
             <Button
                 android:id="@+id/btnExitProfile"
+                app:layout_constraintTop_toBottomOf="@+id/linearDateBirthAndGender"
+                app:layout_constraintStart_toStartOf="parent"
                 style="@style/Widget.AppCompat.Button.Colored"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:text="@string/text_exit" />
 
-        </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 
 
