@@ -99,12 +99,10 @@ class BillAdapter(
 
         fun bind(bill: Bill) {
 
-            val listColors = itemView.resources.getIntArray(R.array.colorSpinnerBill)
-
             val billLetterIcon = itemView.findViewById<MaterialLetterIcon>(R.id.billLetterIcon)
 
             billLetterIcon.apply {
-                shapeColor = listColors[bill.color]
+                shapeColor = bill.color
                 shapeType = MaterialLetterIcon.Shape.CIRCLE
                 letter = bill.name.first().toString()
                 letterSize = 18

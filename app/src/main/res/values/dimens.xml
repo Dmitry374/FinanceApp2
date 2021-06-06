@@ -32,6 +32,12 @@
 
     <dimen name="card_add_bill_elevation">2dp</dimen>
     <dimen name="card_add_bill_text_margin">10dp</dimen>
+    <dimen name="card_add_bill_spinner_margin_top">20dp</dimen>
+
+    <dimen name="item_color_bill_height">30dp</dimen>
+    <dimen name="item_color_bill_margin">4dp</dimen>
+    <dimen name="item_color_bill_card_corner_radius">5dp</dimen>
+    <dimen name="item_color_bill_card_elevation">2dp</dimen>
 
     <dimen name="item_category_margin_start">20dp</dimen>
     <dimen name="item_category_text_size">16sp</dimen>

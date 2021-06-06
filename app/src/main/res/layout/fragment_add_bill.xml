@@ -48,6 +48,12 @@
                     android:singleLine="true" />
             </com.google.android.material.textfield.TextInputLayout>
 
+            <Spinner
+                android:id="@+id/spinnerAddColorBill"
+                android:layout_marginTop="@dimen/card_add_bill_spinner_margin_top"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
         </LinearLayout>
 
     </androidx.cardview.widget.CardView>

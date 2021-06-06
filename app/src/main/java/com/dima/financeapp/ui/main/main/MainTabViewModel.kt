@@ -30,9 +30,9 @@ class MainTabViewModel @Inject constructor(
     val record: LiveData<Event<Record>>
         get() = _record
 
-    fun addBill(name: String, amount: Double) {
+    fun addBill(name: String, amount: Double, color: Int) {
         compositeDisposable.add(
-            financeInteractor.addBill(name, amount)
+            financeInteractor.addBill(name, amount, color)
                 .subscribe({ bill ->
                     _bill.value = Event(bill)
                 }, { throwable ->

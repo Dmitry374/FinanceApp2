@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
 import androidx.appcompat.widget.Toolbar
 import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
@@ -65,13 +66,30 @@ class AddBillFragment : Fragment() {
 
         addBillToolbar.inflateMenu(R.menu.add_bill_menu)
 
+        // Массив цветов
+        val listColors = resources.getIntArray(R.array.colorSpinnerBill)
+
+        var color = listColors[0]
+
+        spinnerAddColorBill.adapter = SpinnerColorBillAdapter(listColors)
+
+        spinnerAddColorBill.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                color = listColors[position]
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+                // do nothing
+            }
+        }
+
         addBillToolbar.setOnMenuItemClickListener(Toolbar.OnMenuItemClickListener { item ->
             when (item.itemId) {
                 R.id.add_bill -> {
                     val name = edNameBill.text.toString()
                     val amountText = edInitialValueBill.text.toString()
                     if (name.isNotEmpty() && amountText.isNotEmpty()) {
-                        mainTabViewModel.addBill(name, amountText.toDouble())
+                        mainTabViewModel.addBill(name, amountText.toDouble(), color)
                     }
                     return@OnMenuItemClickListener true
                 }
