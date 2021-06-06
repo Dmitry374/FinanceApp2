@@ -29,6 +29,10 @@ class FinanceRepository(
         return apiService.loginUser(authorisationRequestItem)
     }
 
+    fun loadUserData(email: String): Single<UserResponse> {
+        return apiService.signInUser(email)
+    }
+
     fun registerUser(authorisationRequestItem: AuthorisationRequestItem): Single<UserResponse> {
         return apiService.registerUser(authorisationRequestItem)
     }

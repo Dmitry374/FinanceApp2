@@ -9,6 +9,8 @@ import com.dima.financeapp.network.request.AuthorisationRequestItem
 import com.dima.financeapp.network.request.UserEditRequest
 import io.reactivex.Single
 import retrofit2.http.Body
+import retrofit2.http.Field
+import retrofit2.http.FormUrlEncoded
 import retrofit2.http.POST
 import retrofit2.http.PUT
 import retrofit2.http.Path
@@ -17,6 +19,10 @@ interface ApiService {
 
     @POST("user/login")
     fun loginUser(@Body authorisationRequestItem: AuthorisationRequestItem): Single<UserResponse>
+
+    @FormUrlEncoded
+    @POST("user/sign_in")
+    fun signInUser(@Field("email") email: String): Single<UserResponse>
 
     @POST("user/register")
     fun registerUser(@Body authorisationRequestItem: AuthorisationRequestItem): Single<UserResponse>

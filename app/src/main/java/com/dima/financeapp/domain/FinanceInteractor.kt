@@ -45,6 +45,26 @@ class FinanceInteractor(
             .observeOn(AndroidSchedulers.mainThread())
     }
 
+    fun loadUserData(): Single<Unit> {
+        return financeRepository.loadUserData(sharedPreferencesHelper.getUserEmail())
+            .subscribeOn(Schedulers.io())
+            .map { userResponse ->
+                sharedPreferencesHelper.setSignInAccount(true)
+                sharedPreferencesHelper.setUserEmail(userResponse.email)
+
+                financeRepository.insertUser(userResponse)
+
+                financeRepository.insertBills(userResponse.bills)
+
+                userResponse.bills.forEach { bill ->
+                    bill.records.forEach { record ->
+                        financeRepository.insertRecord(bill, record)
+                    }
+                }
+            }
+            .observeOn(AndroidSchedulers.mainThread())
+    }
+
     fun registerUser(authorisationRequestItem: AuthorisationRequestItem): Single<Unit> {
         return financeRepository.registerUser(authorisationRequestItem)
             .subscribeOn(Schedulers.io())
@@ -133,5 +153,13 @@ class FinanceInteractor(
         }
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
+    }
+
+    /**
+     * SharedPreferences
+     */
+
+    fun isUserSignIn(): Boolean {
+        return sharedPreferencesHelper.getSignInAccount()
     }
 }

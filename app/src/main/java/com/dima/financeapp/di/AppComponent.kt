@@ -7,12 +7,15 @@ import com.dima.financeapp.ui.main.addbill.AddBillFragment
 import com.dima.financeapp.ui.main.addrecord.AddRecordFragment
 import com.dima.financeapp.ui.main.currencyrates.ExchangeRatesFragment
 import com.dima.financeapp.ui.main.main.MainFragment
+import com.dima.financeapp.ui.start.StartActivity
 import dagger.Component
 import javax.inject.Singleton
 
 @Singleton
 @Component(modules = [AppModule::class, ViewModelModule::class, ViewModelBuilderModule::class])
 interface AppComponent {
+
+    fun inject(startActivity: StartActivity)
 
     fun inject(loginFragment: LoginFragment)
 
