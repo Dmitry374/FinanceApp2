@@ -155,7 +155,7 @@ class ProfileFragment : Fragment(), ProfileFragmentCommunication {
 
         // Выход из аккаунта
         btnExitProfile.setOnClickListener {
-
+            mainFragmentCommunicationInterface?.logOut()
         }
 
         // Set Date Of Birth

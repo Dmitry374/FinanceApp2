@@ -1,5 +1,6 @@
 package com.dima.financeapp.ui.main.activity
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.viewModels
@@ -16,6 +17,7 @@ import com.dima.financeapp.model.domain.Record
 import com.dima.financeapp.model.domain.User
 import com.dima.financeapp.model.net.currency.CurrencyRatesResponse
 import com.dima.financeapp.network.request.UserEditRequest
+import com.dima.financeapp.ui.authorisation.AuthorisationActivity
 import com.dima.financeapp.ui.main.addbill.AddBillFragment
 import com.dima.financeapp.ui.main.addrecord.AddRecordFragment
 import com.dima.financeapp.ui.main.addrecord.categories.CategoriesFragment
@@ -102,6 +104,7 @@ class MainActivity : AppCompatActivity(), MainFragmentCommunicationInterface {
         mainViewModel.bills.observe(this, Observer(::displayBills))
         mainViewModel.currencyRates.observe(this, Observer(::displayCurrencyRates))
         mainViewModel.updateUserDataSuccess.observe(this, EventObserver(::showUpdateUserDataStatus))
+        mainViewModel.logOutSuccess.observe(this, EventObserver(::logOutAction))
     }
 
     private fun displayUser(user: User) {
@@ -122,6 +125,12 @@ class MainActivity : AppCompatActivity(), MainFragmentCommunicationInterface {
             showToastMessage(R.string.edit_user_data_success)
         } else {
             showToastMessage(R.string.edit_user_data_error)
+        }
+    }
+
+    private fun logOutAction(isLogOutSuccess: Boolean) {
+        if (isLogOutSuccess) {
+            goToAuthorisationScreen()
         }
     }
 
@@ -169,6 +178,17 @@ class MainActivity : AppCompatActivity(), MainFragmentCommunicationInterface {
 
     override fun editUser(userEditRequest: UserEditRequest) {
         mainViewModel.editUser(userEditRequest)
+    }
+
+    override fun logOut() {
+        mainViewModel.logOut()
+    }
+
+    private fun goToAuthorisationScreen() {
+        val intent = Intent(this, AuthorisationActivity::class.java)
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+        startActivity(intent)
+        finish()
     }
 
     override fun onAddRecordScreen(bill: Bill) {

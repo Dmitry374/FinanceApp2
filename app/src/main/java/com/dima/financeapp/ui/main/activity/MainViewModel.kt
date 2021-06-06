@@ -36,6 +36,10 @@ class MainViewModel @Inject constructor(
     val updateUserDataSuccess: LiveData<Event<Boolean>>
         get() = _updateUserDataSuccess
 
+    private val _logOutSuccess by lazy { MutableLiveData<Event<Boolean>>() }
+    val logOutSuccess: LiveData<Event<Boolean>>
+        get() = _logOutSuccess
+
     fun getUser() {
         compositeDisposable.add(
             financeInteractor.getUser()
@@ -82,6 +86,17 @@ class MainViewModel @Inject constructor(
                     _updateUserDataSuccess.value = Event(true)
                 }, {
                     _updateUserDataSuccess.value = Event(false)
+                })
+        )
+    }
+
+    fun logOut() {
+        compositeDisposable.add(
+            financeInteractor.clearAllDataFromDb()
+                .subscribe({
+                    _logOutSuccess.value = Event(true)
+                }, {
+                    _logOutSuccess.value = Event(false)
                 })
         )
     }

@@ -99,6 +99,12 @@ class FinanceRepository(
             }
     }
 
+    fun clearAllDataFromDB() {
+        financeDao.clearUserData()
+        financeDao.clearBillsData()
+        financeDao.clearRecordsData()
+    }
+
     /**
      * Convert
      */

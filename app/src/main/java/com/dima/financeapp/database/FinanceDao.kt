@@ -50,4 +50,7 @@ interface FinanceDao {
 
     @Query("SELECT * FROM record ORDER BY id DESC LIMIT :count")
     fun getLastRecords(count: Int): Single<List<RecordEntity>>
+
+    @Query("DELETE FROM record")
+    fun clearRecordsData()
 }

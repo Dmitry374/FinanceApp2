@@ -20,4 +20,6 @@ interface MainFragmentCommunicationInterface {
     fun displayNewRecord(record: Record)
 
     fun editUser(userEditRequest: UserEditRequest)
+
+    fun logOut()
 }

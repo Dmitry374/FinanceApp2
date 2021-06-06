@@ -11,6 +11,7 @@ import com.dima.financeapp.network.request.UserEditRequest
 import com.dima.financeapp.repository.FinanceRepository
 import com.dima.financeapp.sharedpreference.SharedPreferenceHelper
 import com.dima.financeapp.ui.main.main.billadapter.BillItemUiModel
+import io.reactivex.Completable
 import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -121,6 +122,15 @@ class FinanceInteractor(
 
     fun getLastRecords(count: Int): Single<List<Record>> {
         return financeRepository.getLastRecords(count)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+    }
+
+    fun clearAllDataFromDb(): Completable {
+        return Completable.fromCallable {
+            sharedPreferencesHelper.clearIsSignValue()
+            financeRepository.clearAllDataFromDB()
+        }
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
     }
