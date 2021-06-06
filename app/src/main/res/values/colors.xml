@@ -24,6 +24,8 @@
     <color name="last_records_text_color">#777777</color>
     <color name="text_exchange_color">#121212</color>
 
+    <color name="exchange_rates_background_color">#ECEAEA</color>
+
     <color name="dark_red">#c20505</color> 0
     <color name="red">#FF0000</color> 1
     <color name="light_red">#FA5858</color> 2
