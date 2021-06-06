@@ -15,8 +15,13 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="bottom"
-        android:orientation="vertical"
-        android:padding="@dimen/small_padding">
+        android:orientation="vertical">
+
+        <com.github.ivbaranov.mli.MaterialLetterIcon
+            android:id="@+id/billLetterIcon"
+            android:layout_marginStart="@dimen/small_margin"
+            android:layout_width="@dimen/letter_icon_size"
+            android:layout_height="@dimen/letter_icon_size" />
 
         <TextView
             android:id="@+id/textViewBillName"
@@ -24,6 +29,8 @@
             android:layout_height="wrap_content"
             android:ellipsize="end"
             android:maxLines="2"
+            android:layout_marginStart="@dimen/small_margin"
+            android:layout_marginTop="@dimen/small_margin"
             android:textColor="@android:color/white"
             android:textSize="@dimen/card_bill_text_size"
             tools:text="Карта" />
@@ -37,6 +44,7 @@
             android:ellipsize="end"
             android:maxLines="1"
             android:singleLine="true"
+            android:layout_marginStart="@dimen/small_margin"
             android:textColor="@android:color/white"
             android:textSize="@dimen/card_bill_text_size"
             tools:text="5000" />

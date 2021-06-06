@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.dima.financeapp.R
 import com.dima.financeapp.model.domain.Bill
+import com.github.ivbaranov.mli.MaterialLetterIcon
 
 class BillAdapter(
     private val clickBillListener: (Bill) -> Unit,
@@ -97,6 +98,18 @@ class BillAdapter(
     ) : RecyclerView.ViewHolder(itemView) {
 
         fun bind(bill: Bill) {
+
+            val listColors = itemView.resources.getIntArray(R.array.colorSpinnerBill)
+
+            val billLetterIcon = itemView.findViewById<MaterialLetterIcon>(R.id.billLetterIcon)
+
+            billLetterIcon.apply {
+                shapeColor = listColors[bill.color]
+                shapeType = MaterialLetterIcon.Shape.CIRCLE
+                letter = bill.name.first().toString()
+                letterSize = 18
+                lettersNumber = 1
+            }
 
             itemView.setOnClickListener { onBillClick(absoluteAdapterPosition) }
             itemView.findViewById<TextView>(R.id.textViewBillName).text = bill.name

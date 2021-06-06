@@ -48,6 +48,9 @@ dependencies {
     // Material
     implementation "com.google.android.material:material:$material_version"
 
+    // Material letter icon
+    implementation "com.github.ivbaranov:materiallettericon:$materiallettericon_version"
+
     // Activity
     implementation "androidx.activity:activity-ktx:$activity_version"
 

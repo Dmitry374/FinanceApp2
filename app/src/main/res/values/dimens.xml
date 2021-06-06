@@ -56,4 +56,6 @@
     <dimen name="currency_name_text_size">12sp</dimen>
     <dimen name="currency_date_exchange_margin">5dp</dimen>
     <dimen name="currency_date_exchange_text_size">16sp</dimen>
+
+    <dimen name="letter_icon_size">27dp</dimen>
 </resources>
