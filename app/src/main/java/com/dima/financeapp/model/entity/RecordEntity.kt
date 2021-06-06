@@ -25,5 +25,6 @@ data class RecordEntity(
     val icon: Int,
     val date: Long,
     @ColumnInfo(name = "bill_id", index = true)
-    val billId: Int
+    val billId: Int,
+    val info: String
 )

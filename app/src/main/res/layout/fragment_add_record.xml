@@ -134,6 +134,18 @@
 
 
             </LinearLayout>
+
+            <EditText
+                android:id="@+id/editTextInfo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin"
+                android:hint="@string/text_info"
+                android:inputType="textMultiLine|textCapWords"
+                android:gravity="top"
+                android:minLines="1"
+                android:lines="1" />
+
         </LinearLayout>
     </ScrollView>
 

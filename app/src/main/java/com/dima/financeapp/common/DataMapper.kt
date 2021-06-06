@@ -89,6 +89,7 @@ class DataMapper {
         billName = this.billName,
         icon = this.icon,
         date = this.date,
+        info = this.info
     )
 
     fun recordResponseToRecord(recordResponse: RecordResponse): Record {
@@ -110,6 +111,7 @@ class DataMapper {
         billName = this.billName,
         icon = this.icon,
         date = this.date,
+        info = this.info,
         billId = billId
     )
 
@@ -140,7 +142,8 @@ class DataMapper {
         type = this.type,
         billName = this.billName,
         icon = this.icon,
-        date = this.date
+        date = this.date,
+        info = this.info
     )
 
     /**

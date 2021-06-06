@@ -105,6 +105,7 @@ class AddRecordFragment : Fragment(), CategoryFragmentCommunication {
                                         billName = bill.name,
                                         icon = category.icon,
                                         date = Date().time,
+                                        info = editTextInfo.text.toString(),
                                         billId = bill.id
                                     ), bill
                                 )
@@ -170,5 +171,8 @@ class AddRecordFragment : Fragment(), CategoryFragmentCommunication {
     private fun hideSoftKeyBoardAndClearText() {
         edSumNewRecord.hideKeyboard()
         edSumNewRecord.text.clear()
+
+        editTextInfo.hideKeyboard()
+        editTextInfo.text.clear()
     }
 }

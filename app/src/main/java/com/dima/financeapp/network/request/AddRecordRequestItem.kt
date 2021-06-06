@@ -7,5 +7,6 @@ data class AddRecordRequestItem(
     val billName: String,
     val icon: Int,
     val date: Long,
+    val info: String,
     val billId: Int
 )

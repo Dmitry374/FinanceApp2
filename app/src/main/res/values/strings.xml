@@ -74,4 +74,6 @@
 
     <string name="user_name_on_main">%1$s,</string>
     <string name="here_displayed_your_bills">здесь отображены Ваши счета</string>
+
+    <string name="text_info">Примечания</string>
 </resources>

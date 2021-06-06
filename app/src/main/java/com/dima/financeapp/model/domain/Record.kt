@@ -11,5 +11,6 @@ data class Record(
     val type: String,
     val billName: String,
     val icon: Int,
-    val date: Long
+    val date: Long,
+    val info: String
 ) : Parcelable

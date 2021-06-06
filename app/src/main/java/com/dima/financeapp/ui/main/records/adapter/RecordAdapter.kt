@@ -76,6 +76,7 @@ class RecordAdapter(
             val tvNameBillRecycler = itemView.findViewById<TextView>(R.id.tvNameBillRecycler)
             val tvSumOperation = itemView.findViewById<TextView>(R.id.tvSumOperation)
             val tvDateOperation = itemView.findViewById<TextView>(R.id.tvDateOperation)
+            val textViewInfo = itemView.findViewById<TextView>(R.id.textViewInfo)
 
             Glide.with(imgCategoryRecycler)
                 .load(record.icon)
@@ -107,6 +108,13 @@ class RecordAdapter(
                     String.format(itemView.context.getString(R.string.income_sum_in_rubles), record.sum)
             }
             tvDateOperation.text = record.date.getDateText()
+
+            if (record.info.isEmpty()) {
+                textViewInfo.visibility = View.GONE
+            } else {
+                textViewInfo.visibility = View.VISIBLE
+                textViewInfo.text = record.info
+            }
         }
     }
 }
