@@ -5,6 +5,7 @@ data class UserEditRequest(
     val name: String,
     val surname: String,
     val email: String,
+    val photoUrl: String,
     val datebirth: String,
     val gender: String
 )

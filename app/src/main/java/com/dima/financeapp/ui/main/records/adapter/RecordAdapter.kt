@@ -14,7 +14,6 @@ import com.bumptech.glide.request.RequestOptions
 import com.dima.financeapp.R
 import com.dima.financeapp.common.Constants
 import com.dima.financeapp.common.getDateText
-import com.dima.financeapp.model.domain.Bill
 import com.dima.financeapp.model.domain.Record
 
 class RecordAdapter(
@@ -22,8 +21,6 @@ class RecordAdapter(
 ) : RecyclerView.Adapter<RecordAdapter.RecordViewHolder>() {
 
     private val differ = AsyncListDiffer(this, DIFF_CALLBACK)
-
-    var bill: Bill? = null
 
     override fun getItemCount(): Int {
         return differ.currentList.size
@@ -40,8 +37,7 @@ class RecordAdapter(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecordViewHolder {
         return RecordViewHolder(
             LayoutInflater.from(parent.context)
-                .inflate(R.layout.item_record, parent, false),
-            bill
+                .inflate(R.layout.item_record, parent, false)
         ) { position ->
             clickRecordListener(differ.currentList[position])
         }
@@ -65,7 +61,6 @@ class RecordAdapter(
 
     class RecordViewHolder(
         itemView: View,
-        private val bill: Bill?,
         private val onRecordClick: (Int) -> Unit
     ) : RecyclerView.ViewHolder(itemView) {
 
@@ -91,7 +86,7 @@ class RecordAdapter(
                 .into(imgCategoryRecycler)
 
             tvNameCategoryRecycler.text = record.name
-            tvNameBillRecycler.text = bill?.name
+            tvNameBillRecycler.text = record.billName
 
             if (record.type == Constants.RECORD_TYPE_CONSUMPTION) {  // Если тип - расход
                 tvSumOperation.setTextColor(ContextCompat.getColor(tvSumOperation.context, R.color.color_consumption))

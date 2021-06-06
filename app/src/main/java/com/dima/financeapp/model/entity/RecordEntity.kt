@@ -20,7 +20,8 @@ data class RecordEntity(
     val name: String,
     val sum: Double,
     val type: String,
-    val color: Int,
+    @ColumnInfo(name = "bill_name")
+    val billName: String,
     val icon: Int,
     val date: Long,
     @ColumnInfo(name = "bill_id", index = true)

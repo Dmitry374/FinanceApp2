@@ -9,7 +9,7 @@ data class Record(
     val name: String,
     val sum: Double,
     val type: String,
-    val color: Int,
+    val billName: String,
     val icon: Int,
     val date: Long
 ) : Parcelable

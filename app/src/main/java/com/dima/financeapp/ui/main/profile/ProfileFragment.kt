@@ -75,6 +75,7 @@ class ProfileFragment : Fragment(), ProfileFragmentCommunication {
                                 name = name,
                                 surname = surname,
                                 email = user.email,
+                                photoUrl = user.photoUrl,
                                 datebirth = dateOfBirth,
                                 gender = gender
                             )
@@ -105,10 +106,17 @@ class ProfileFragment : Fragment(), ProfileFragmentCommunication {
 
         dateOfBirth = btnSetDateOfBirthProfile.text.toString()
 
-        Glide.with(imgUserProfile)
-            .load(R.drawable.profile_img)
-            .circleCrop()
-            .into(imgUserProfile)
+        if (user.photoUrl.isEmpty()) {
+            Glide.with(imgUserProfile)
+                .load(R.drawable.profile_img)
+                .circleCrop()
+                .into(imgUserProfile)
+        } else {
+            Glide.with(imgUserProfile)
+                .load(user.photoUrl)
+                .circleCrop()
+                .into(imgUserProfile)
+        }
 
         if (user.datebirth.isEmpty()) {
             btnSetDateOfBirthProfile.text = getText(R.string.text_empty)

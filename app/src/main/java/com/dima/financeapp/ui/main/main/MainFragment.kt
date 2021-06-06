@@ -87,7 +87,6 @@ class MainFragment : Fragment(), MainTabCommunication {
         recyclerMainBills.adapter = billAdapter
 
         recyclerLastRecord.layoutManager = LinearLayoutManager(activity)
-        recordAdapter.bill = null
         recyclerLastRecord.adapter = recordAdapter
     }
 

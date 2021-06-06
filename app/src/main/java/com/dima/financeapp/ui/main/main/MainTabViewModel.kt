@@ -45,6 +45,9 @@ class MainTabViewModel @Inject constructor(
         compositeDisposable.add(
             financeInteractor.addRecord(addRecordRequestItem, bill)
                 .subscribe({ record ->
+                    val mutableListRecords = bill.records.toMutableList()
+                    mutableListRecords.add(record)
+                    bill.records = mutableListRecords
                     _record.value = Event(record)
                 }, { throwable ->
 

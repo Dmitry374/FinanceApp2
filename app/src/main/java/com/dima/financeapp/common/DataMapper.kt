@@ -26,6 +26,7 @@ class DataMapper {
         name = this.name,
         surname = this.surname,
         email = this.email,
+        photoUrl = this.photoUrl,
         password = this.password,
         datebirth = this.datebirth,
         gender = this.gender
@@ -40,6 +41,7 @@ class DataMapper {
         name = this.name,
         surname = this.surname,
         email = this.email,
+        photoUrl = this.photoUrl,
         password = this.password,
         datebirth = this.datebirth,
         gender = this.gender
@@ -84,7 +86,7 @@ class DataMapper {
         name = this.name,
         sum = this.sum,
         type = this.type,
-        color = this.color,
+        billName = this.billName,
         icon = this.icon,
         date = this.date,
     )
@@ -105,7 +107,7 @@ class DataMapper {
         name = this.name,
         sum = this.sum,
         type = this.type,
-        color = this.color,
+        billName = this.billName,
         icon = this.icon,
         date = this.date,
         billId = billId
@@ -136,7 +138,7 @@ class DataMapper {
         name = this.name,
         sum = this.sum,
         type = this.type,
-        color = this.color,
+        billName = this.billName,
         icon = this.icon,
         date = this.date
     )

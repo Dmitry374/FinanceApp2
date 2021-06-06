@@ -102,6 +102,7 @@ class AddRecordFragment : Fragment(), CategoryFragmentCommunication {
                                         name = category.name,
                                         sum = sum,
                                         type = spinnerTypeRecord.selectedItem.toString(),
+                                        billName = bill.name,
                                         icon = category.icon,
                                         date = Date().time,
                                         billId = bill.id

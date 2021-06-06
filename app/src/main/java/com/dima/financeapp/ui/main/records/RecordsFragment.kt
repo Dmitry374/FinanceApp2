@@ -61,7 +61,6 @@ class RecordsFragment : Fragment(), RecordsFragmentCommunication {
 
     private fun initViews(bill: Bill) {
         recyclerRecords.layoutManager = LinearLayoutManager(activity)
-        recordAdapter.bill = bill
         recordAdapter.submitList(bill.records)
         recyclerRecords.adapter = recordAdapter
 

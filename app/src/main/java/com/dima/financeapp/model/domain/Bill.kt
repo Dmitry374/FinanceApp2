@@ -9,5 +9,5 @@ data class Bill(
     val name: String,
     var amount: Double,
     val color: Int,
-    val records: List<Record>
+    var records: List<Record>
 ) : Parcelable
