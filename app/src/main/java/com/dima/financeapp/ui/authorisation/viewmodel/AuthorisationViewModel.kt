@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.dima.financeapp.domain.FinanceInteractor
 import com.dima.financeapp.network.request.AuthorisationRequestItem
+import com.dima.financeapp.network.request.RegistrationRequestItem
 import com.dima.financeapp.utils.Event
 import io.reactivex.disposables.CompositeDisposable
 import javax.inject.Inject
@@ -39,17 +40,18 @@ class AuthorisationViewModel @Inject constructor(
         )
     }
 
-    fun registrationUser(email: String, password: String) {
+    fun registrationUser(name: String, email: String, password: String) {
         compositeDisposable.add(
             financeInteractor.registerUser(
-                AuthorisationRequestItem(
+                RegistrationRequestItem(
+                    name = name,
                     email = email,
                     password = password
                 )
             )
                 .subscribe({
                     _registerSuccess.value = Event(true)
-                }, {
+                }, { throwable ->
                     _registerSuccess.value = Event(false)
                 })
         )

@@ -6,6 +6,7 @@ import com.dima.financeapp.model.net.UserResponse
 import com.dima.financeapp.network.request.AddBillRequestItem
 import com.dima.financeapp.network.request.AddRecordRequestItem
 import com.dima.financeapp.network.request.AuthorisationRequestItem
+import com.dima.financeapp.network.request.RegistrationRequestItem
 import com.dima.financeapp.network.request.UserEditRequest
 import io.reactivex.Single
 import retrofit2.http.Body
@@ -25,7 +26,7 @@ interface ApiService {
     fun signInUser(@Field("email") email: String): Single<UserResponse>
 
     @POST("user/register")
-    fun registerUser(@Body authorisationRequestItem: AuthorisationRequestItem): Single<UserResponse>
+    fun registerUser(@Body registrationRequestItem: RegistrationRequestItem): Single<UserResponse>
 
     @PUT("user/{id}")
     fun editUser(@Path("id") id: Long, @Body userEditRequest: UserEditRequest): Single<UserResponse>

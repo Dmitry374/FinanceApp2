@@ -65,12 +65,13 @@ class RegistrationFragment : Fragment() {
         )
 
         btnRegister.setOnClickListener {
+            val name = edNameRegister.text.toString()
             val email = edEmailRegister.text.toString()
             val password = edPasswordRegister.text.toString()
-            if (email.isEmpty() || password.isEmpty()) {
+            if (email.isEmpty() || password.isEmpty() || name.isEmpty()) {
                 Toast.makeText(activity, R.string.fill_in_all_fields, Toast.LENGTH_SHORT).show()
             } else {
-                authorisationViewModel.registrationUser(email, password)
+                authorisationViewModel.registrationUser(name, email, password)
             }
         }
     }

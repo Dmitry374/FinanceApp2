@@ -7,6 +7,7 @@ import com.dima.financeapp.model.domain.User
 import com.dima.financeapp.network.request.AddBillRequestItem
 import com.dima.financeapp.network.request.AddRecordRequestItem
 import com.dima.financeapp.network.request.AuthorisationRequestItem
+import com.dima.financeapp.network.request.RegistrationRequestItem
 import com.dima.financeapp.network.request.UserEditRequest
 import com.dima.financeapp.repository.FinanceRepository
 import com.dima.financeapp.sharedpreference.SharedPreferenceHelper
@@ -65,8 +66,8 @@ class FinanceInteractor(
             .observeOn(AndroidSchedulers.mainThread())
     }
 
-    fun registerUser(authorisationRequestItem: AuthorisationRequestItem): Single<Unit> {
-        return financeRepository.registerUser(authorisationRequestItem)
+    fun registerUser(registrationRequestItem: RegistrationRequestItem): Single<Unit> {
+        return financeRepository.registerUser(registrationRequestItem)
             .subscribeOn(Schedulers.io())
             .map { userResponse ->
                 sharedPreferencesHelper.setSignInAccount(true)
