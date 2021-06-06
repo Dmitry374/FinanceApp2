@@ -105,6 +105,7 @@ class MainActivity : AppCompatActivity(), MainFragmentCommunicationInterface {
     }
 
     private fun displayUser(user: User) {
+        mainTabCommunication?.userData(user)
         profileFragmentCommunication?.setUser(user)
     }
 

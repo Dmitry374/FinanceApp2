@@ -71,4 +71,7 @@
 
     <string name="edit_user_data_success">Данные пользователя успешно обновлены</string>
     <string name="edit_user_data_error">Ошибка во время обновленя данных пользователя</string>
+
+    <string name="user_name_on_main">%1$s,</string>
+    <string name="here_displayed_your_bills">здесь отображены Ваши счета</string>
 </resources>

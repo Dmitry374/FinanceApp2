@@ -14,6 +14,9 @@
     <dimen name="logo_authorisation_margin_top">50dp</dimen>
     <dimen name="logo_authorisation_area_margin">30dp</dimen>
 
+    <dimen name="main_user_name_text_size">28sp</dimen>
+    <dimen name="your_bills_text_size">14sp</dimen>
+
     <dimen name="card_bill_width">100dp</dimen>
     <dimen name="card_bill_height">100dp</dimen>
     <dimen name="card_bill_radius">8dp</dimen>

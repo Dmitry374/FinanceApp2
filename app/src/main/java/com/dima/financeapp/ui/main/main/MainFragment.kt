@@ -14,6 +14,7 @@ import com.dima.financeapp.App
 import com.dima.financeapp.R
 import com.dima.financeapp.common.Constants
 import com.dima.financeapp.model.domain.Record
+import com.dima.financeapp.model.domain.User
 import com.dima.financeapp.ui.main.communication.MainFragmentCommunicationInterface
 import com.dima.financeapp.ui.main.communication.MainTabCommunication
 import com.dima.financeapp.ui.main.main.billadapter.BillAdapter
@@ -24,6 +25,8 @@ import kotlinx.android.synthetic.main.fragment_main.*
 import javax.inject.Inject
 
 class MainFragment : Fragment(), MainTabCommunication {
+
+    private var user: User? = null
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
@@ -74,6 +77,9 @@ class MainFragment : Fragment(), MainTabCommunication {
     }
 
     private fun initViews() {
+
+        user?.let { displayUserData(it) }
+
         val billItemDecoration = BillItemDecoration()
         recyclerMainBills.addItemDecoration(billItemDecoration)
         recyclerMainBills.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
@@ -86,6 +92,15 @@ class MainFragment : Fragment(), MainTabCommunication {
 
     private fun initObservers() {
         mainTabViewModel.records.observe(viewLifecycleOwner, Observer(::displayRecords))
+    }
+
+    override fun userData(user: User) {
+        this.user = user
+        displayUserData(user)
+    }
+
+    private fun displayUserData(user: User) {
+        textViewUserName.text = String.format(getString(R.string.user_name_on_main), user.name)
     }
 
     override fun displayBills(bills: List<BillItemUiModel.BillUiModel>) {
