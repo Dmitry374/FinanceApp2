@@ -16,6 +16,7 @@
 
     <dimen name="main_user_name_text_size">28sp</dimen>
     <dimen name="your_bills_text_size">14sp</dimen>
+    <dimen name="last_records_main_top_text_size">16sp</dimen>
 
     <dimen name="card_bill_width">100dp</dimen>
     <dimen name="card_bill_height">100dp</dimen>

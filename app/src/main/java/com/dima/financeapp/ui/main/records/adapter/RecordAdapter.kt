@@ -17,6 +17,7 @@ import com.dima.financeapp.common.getDateText
 import com.dima.financeapp.model.domain.Record
 
 class RecordAdapter(
+    private val isDisplayBill: Boolean,
     private val clickRecordListener: (Record) -> Unit
 ) : RecyclerView.Adapter<RecordAdapter.RecordViewHolder>() {
 
@@ -37,7 +38,8 @@ class RecordAdapter(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecordViewHolder {
         return RecordViewHolder(
             LayoutInflater.from(parent.context)
-                .inflate(R.layout.item_record, parent, false)
+                .inflate(R.layout.item_record, parent, false),
+            isDisplayBill
         ) { position ->
             clickRecordListener(differ.currentList[position])
         }
@@ -61,6 +63,7 @@ class RecordAdapter(
 
     class RecordViewHolder(
         itemView: View,
+        private val isDisplayBill: Boolean,
         private val onRecordClick: (Int) -> Unit
     ) : RecyclerView.ViewHolder(itemView) {
 
@@ -86,7 +89,13 @@ class RecordAdapter(
                 .into(imgCategoryRecycler)
 
             tvNameCategoryRecycler.text = record.name
-            tvNameBillRecycler.text = record.billName
+
+            if (isDisplayBill) {
+                tvNameBillRecycler.visibility = View.VISIBLE
+                tvNameBillRecycler.text = record.billName
+            } else {
+                tvNameBillRecycler.visibility = View.GONE
+            }
 
             if (record.type == Constants.RECORD_TYPE_CONSUMPTION) {  // Если тип - расход
                 tvSumOperation.setTextColor(ContextCompat.getColor(tvSumOperation.context, R.color.color_consumption))

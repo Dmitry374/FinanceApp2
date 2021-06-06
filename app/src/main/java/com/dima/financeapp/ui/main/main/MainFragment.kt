@@ -44,7 +44,7 @@ class MainFragment : Fragment(), MainTabCommunication {
         mainFragmentCommunicationInterface?.displayAddNewBillFragment()
     })
 
-    private val recordAdapter = RecordAdapter { record ->
+    private val recordAdapter = RecordAdapter(true) { record ->
 
     }
 

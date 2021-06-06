@@ -21,7 +21,7 @@ class RecordsFragment : Fragment(), RecordsFragmentCommunication {
 
     private var bill: Bill? = null
 
-    private val recordAdapter = RecordAdapter { record ->
+    private val recordAdapter = RecordAdapter(false) { record ->
 
     }
 
