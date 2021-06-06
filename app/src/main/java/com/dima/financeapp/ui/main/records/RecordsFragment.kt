@@ -61,7 +61,7 @@ class RecordsFragment : Fragment(), RecordsFragmentCommunication {
 
     private fun initViews(bill: Bill) {
         recyclerRecords.layoutManager = LinearLayoutManager(activity)
-        recordAdapter.submitList(bill.records)
+        recordAdapter.submitList(bill.records.reversed())
         recyclerRecords.adapter = recordAdapter
 
         createNewRecord.setOnClickListener {
@@ -75,7 +75,7 @@ class RecordsFragment : Fragment(), RecordsFragmentCommunication {
 
     override fun displayNewRecord(record: Record) {
         val currentRecords = recordAdapter.getItems().toMutableList()
-        currentRecords.add(record)
+        currentRecords.add(0, record)
         recordAdapter.submitList(currentRecords)
     }
 }
