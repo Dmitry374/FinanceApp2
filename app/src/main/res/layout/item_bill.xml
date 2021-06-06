@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="@dimen/card_bill_width"
     android:layout_height="@dimen/card_bill_height"
+    android:layout_marginTop="@dimen/small_margin"
     android:foreground="?android:attr/selectableItemBackground"
     card_view:cardBackgroundColor="@color/bill_card_color"
     card_view:cardCornerRadius="@dimen/card_bill_radius"

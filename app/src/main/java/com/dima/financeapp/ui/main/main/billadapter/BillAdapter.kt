@@ -31,8 +31,8 @@ class BillAdapter(
 
     fun submitList(bills: List<BillItemUiModel>) {
         val list = mutableListOf<BillItemUiModel>()
-        list.add(BillItemUiModel.AddNewBillUiModel)
         list.addAll(bills)
+        list.add(BillItemUiModel.AddNewBillUiModel)
         differ.submitList(list)
     }
 

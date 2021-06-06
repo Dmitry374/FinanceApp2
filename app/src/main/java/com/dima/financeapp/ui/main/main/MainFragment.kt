@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dima.financeapp.App
 import com.dima.financeapp.R
@@ -82,7 +83,7 @@ class MainFragment : Fragment(), MainTabCommunication {
 
         val billItemDecoration = BillItemDecoration()
         recyclerMainBills.addItemDecoration(billItemDecoration)
-        recyclerMainBills.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
+        recyclerMainBills.layoutManager = GridLayoutManager(requireActivity(), SPAN_COUNT)
         recyclerMainBills.adapter = billAdapter
 
         recyclerLastRecord.layoutManager = LinearLayoutManager(activity)
@@ -109,5 +110,9 @@ class MainFragment : Fragment(), MainTabCommunication {
 
     private fun displayRecords(records: List<Record>) {
         recordAdapter.submitList(records)
+    }
+
+    companion object {
+        private const val SPAN_COUNT = 3
     }
 }

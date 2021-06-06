@@ -21,7 +21,7 @@
     <dimen name="card_bill_height">100dp</dimen>
     <dimen name="card_bill_radius">8dp</dimen>
     <dimen name="card_bill_elevation">0dp</dimen>
-    <dimen name="card_add_bill_width">90dp</dimen>
+    <dimen name="card_add_bill_width">100dp</dimen>
     <dimen name="card_add_bill_height">100dp</dimen>
 
     <dimen name="card_bill_text_size">14sp</dimen>
