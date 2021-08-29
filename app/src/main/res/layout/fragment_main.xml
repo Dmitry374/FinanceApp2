@@ -47,8 +47,6 @@
             android:id="@+id/cardLastBills"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/small_margin"
-            android:layout_marginStart="@dimen/small_margin"
             android:layout_marginBottom="@dimen/small_margin"
             android:layout_marginTop="@dimen/margin"
             app:cardCornerRadius="@dimen/card_last_records_radius"
@@ -68,6 +66,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/small_margin"
                     android:layout_marginTop="@dimen/small_margin"
+                    android:layout_marginStart="@dimen/margin"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/recyclerLastRecord">
 
@@ -111,6 +110,7 @@
                     android:id="@+id/recyclerLastRecord"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:layout_margin="@dimen/margin"
                     android:layout_marginTop="@dimen/small_margin"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/tvTitleLastRecords" />
